@@ -1,7 +1,36 @@
 body{
 	background-color: #85C1E9;
+	margin: 0 auto;
+	padding: 10px 10px 10px 10px;
+	line-height: 30px;
 }
+
+header{
+	background-color: floralwhite;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	font-family: Lucida Console, Helvetica, Arial, sans-serif;
+}
+
+header h1{
+
+	font-family: 'Loved by the King', cursive;
+}
+
+header img{
+	border-radius: 300px;
+	width: 300px;
+	border: 10px outset limegreen;
+}
+
 h1{
 			font-size: 30px;
 			color: #1F618D;
 		}
+
+a:hover{
+
+	color:  hotpink;
+}
+
