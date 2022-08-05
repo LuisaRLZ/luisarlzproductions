@@ -13,6 +13,35 @@ header{
 	font-family: Lucida Console, Helvetica, Arial, sans-serif;
 }
 
+ul.nav {
+  margin: auto;
+  background-color: #09854c;
+  text-align: center;
+  font-family: 'Satisfy', cursive;
+  font-size: 30px;
+}
+ul.nav > li {
+  height: 100px;
+  line-height: 100px;
+  margin: auto;
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+ul.nav > li:hover {
+  background-color: limegreen;
+}
+ul.nav > li > a {
+  margin: auto;
+  color: white;
+  text-decoration: none;
+}
+
+ul.nav > li > a > img {
+  vertical-align: middle;
+  max-height: 70px;
+}
+
 header h1{
 
 	font-family: 'Loved by the King', cursive;
