@@ -6,7 +6,7 @@ body{
 }
 
 header{
-	background-color: floralwhite;
+	background-color: #dcf5ea;
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -15,21 +15,21 @@ header{
 
 ul.nav {
   margin: auto;
-  background-color: #09854c;
+  background-color: seagreen;
   text-align: center;
   font-family: 'Satisfy', cursive;
   font-size: 30px;
 }
 ul.nav > li {
-  height: 100px;
-  line-height: 100px;
+  height: 80px;
+  line-height: 80px;
   margin: auto;
   display: inline-block;
   padding-right: 10px;
   padding-left: 10px;
 }
 ul.nav > li:hover {
-  background-color: limegreen;
+  background-color: mediumseagreen;
 }
 ul.nav > li > a {
   margin: auto;
