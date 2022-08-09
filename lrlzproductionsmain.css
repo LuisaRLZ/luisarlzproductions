@@ -13,6 +13,12 @@ header{
 	font-family: Lucida Console, Helvetica, Arial, sans-serif;
 }
 
+div.texto1 {
+   word-wrap: break-word;
+   width: auto;
+   text-align: center;
+}
+
 ul.nav {
   margin: auto;
   background-color: seagreen;
