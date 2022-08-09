@@ -1,5 +1,5 @@
 body{
-	background-color: #85C1E9;
+	background-color: #dcf5ea;
 	margin: 0 auto;
 	line-height: 30px;
 }
@@ -25,6 +25,34 @@ div.texto1 {
    line-height: 40px;
 }
 
+div.texto2 {
+   word-wrap: break-word;
+   width: auto;
+   text-align: center;
+   font-family: cursive;
+   font-size: 35px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 20px;
+   padding-right: 20px;
+   line-height: 40px;
+   color: darkgreen;
+   font-family: 'Loved by the King', cursive;
+}
+
+div.texto3 {
+   word-wrap: break-word;
+   width: auto;
+   text-align: center;
+   font-family: cursive;
+   font-size: 18px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 20px;
+   padding-right: 20px;
+   line-height: 40px;
+}
+
 ul.nav {
   margin: auto;
   background-color: seagreen;
@@ -39,6 +67,7 @@ ul.nav > li {
   display: inline-block;
   padding-right: 10px;
   padding-left: 10px;
+  text-align: center;
 }
 ul.nav > li:hover {
   background-color: mediumseagreen;
@@ -47,11 +76,13 @@ ul.nav > li > a {
   margin: auto;
   color: white;
   text-decoration: none;
+  text-align: center;
 }
 
 ul.nav > li > a > img {
   vertical-align: middle;
   max-height: 70px;
+  text-align: center;
 }
 
 header h1{
