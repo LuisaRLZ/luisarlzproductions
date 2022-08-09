@@ -10,6 +10,8 @@ footer{
 	line-height: 30px;
 	color: white;
 	text-align: center;
+	font-size: 18px;
+	text-decoration: none;
 }
 
 div.texto4 {
@@ -23,6 +25,36 @@ div.texto4 {
    padding-left: 20px;
    padding-right: 20px;
    line-height: 40px;
+   text-decoration: none;
+}
+
+div.texto6 {
+   word-wrap: break-word;
+   width: auto;
+   text-align: center;
+   font-family: cursive;
+   font-size: 25px;
+   line-height: 35px;
+   text-decoration: none;
+}
+
+a.fkintext { color: inherit; 
+text-decoration: none;} 
+
+a.fkintext:hover { background-color: darkseagreen; }
+
+div.texto5 {
+   word-wrap: break-word;
+   width: auto;
+   text-align: center;
+   font-size: 18px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 20px;
+   padding-right: 20px;
+   line-height: 40px;
+   color: white;
+   text-decoration: none;
 }
 
 header{
