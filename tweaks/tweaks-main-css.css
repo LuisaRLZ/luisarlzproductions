@@ -66,9 +66,7 @@ header{
 }
 
 div.texto1 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
+   text-align: justify;
    font-family: 'Uchen', serif;
    font-size: 24px;
    padding-top: 10px;
