@@ -1,34 +1,3 @@
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: mediumseagreen; /*Sets the text hover color on navbar*/
-}
-
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
-        a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: seagreen; /*BACKGROUND color for active*/
-    background-color: seagreen;
-}
-
-.navbar-default {
-    background-color: #0f006f;
-    border-color: #030033;
-}
-
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-    color: #262626;
-    text-decoration: none;
-    background-color: #66CCFF; /*change color of links in drop down here*/
-}
-
-.nav > li > a:hover,
-.nav > li > a:focus {
-    text-decoration: none;
-    background-color: silver; /*Change rollover cell color here*/
-}
-
-.navbar-default .navbar-nav > li > a {
-    color: white; /*Change active text color here*/
-}
 
 body{
 	background-color: #dcf5ea;
@@ -136,39 +105,6 @@ div.texto3 {
    padding-left: 20px;
    padding-right: 20px;
    line-height: 40px;
-}
-
-ul.nav {
-   color: white;
-  margin: auto;
-  background-color: seagreen;
-  text-align: center;
-  font-family: 'Satisfy', cursive;
-  font-size: 30px;
-}
-ul.nav > li {
-  height: 80px;
-  line-height: 80px;
-  margin: auto;
-  display: inline-block;
-  padding-right: 10px;
-  padding-left: 10px;
-  text-align: center;
-}
-ul.nav > li:hover {
-  background-color: mediumseagreen;
-}
-ul.nav > li > a {
-  margin: auto;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-}
-
-ul.nav > li > a > img {
-  vertical-align: middle;
-  max-height: 70px;
-  text-align: center;
 }
 
 header h1{
