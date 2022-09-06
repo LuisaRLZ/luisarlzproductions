@@ -1,122 +1,30 @@
-
-body{
-	background-color: #dcf5ea;
-	margin: 0 auto;
-	line-height: 30px;
-}
-
-footer{
-	background-color: seagreen;
-	margin: 0 auto;
-	line-height: 30px;
-	color: white;
-	text-align: center;
-	font-size: 18px;
-	text-decoration: none;
-}
-
-div.texto4 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-family: 'Uchen', serif;
-   font-size: 30px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   padding-left: 20px;
-   padding-right: 20px;
-   line-height: 40px;
-   text-decoration: none;
-}
-
-div.texto6 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-family: 'Uchen', serif;
-   font-size: 25px;
-   line-height: 35px;
-   text-decoration: none;
-}
-
-a.fkintext { color: inherit; 
-text-decoration: none;} 
-
-a.fkintext:hover { background-color: darkseagreen; }
-
-div.texto5 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-size: 18px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   padding-left: 20px;
-   padding-right: 20px;
-   line-height: 40px;
-   color: white;
-   text-decoration: none;
-}
-
 header{
 	background-color: #dcf5ea;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 76px;
 	padding-bottom: 50px;
 	font-family: Lucida Console, Helvetica, Arial, sans-serif;
 }
 
-div.texto1 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-family: 'Uchen', serif;
-   font-size: 24px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   padding-left: 40px;
-   padding-right: 40px;
-   line-height: 40px;
+.barra{
+   background-color: seagreen;
+   background: rgba(46, 139, 87, .9);
+   color: white;
+   font-family: 'Satisfy', cursive;
+   font-size: 30px;
 }
 
-div.texto2 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-family: cursive;
-   font-size: 35px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   padding-left: 20px;
-   padding-right: 20px;
-   line-height: 40px;
-   color: darkgreen;
-   font-family: 'Loved by the King', cursive;
+.barra2{
+   background-color: seagreen;
+   background: rgba(46, 139, 87, .9);
+   color: white;
+   font-family: 'Satisfy', cursive;
+   font-size: 20px;
 }
 
-div.texto3 {
-   word-wrap: break-word;
-   width: auto;
-   text-align: center;
-   font-family: 'Uchen', serif;
-   font-size: 18px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   padding-left: 20px;
-   padding-right: 20px;
-   line-height: 40px;
+.barra > a > img{
+   max-height: 50px;
 }
 
-header h1{
-
-	font-family: 'Loved by the King', cursive;
-	padding-top: 25px;
-	color: darkgreen;
-	font-size: 50px;
-	line-height: 50px;
-}
-
-h1{
-			font-size: 30px;
-			color: #1F618D;
-		}
+.barrahov:hover{
+   background-color: mediumseagreen}
