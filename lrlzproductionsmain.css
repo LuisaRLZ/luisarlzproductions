@@ -1,9 +1,14 @@
 header{
 	background-color: #dcf5ea;
-	padding-top: 76px;
 	padding-bottom: 50px;
+   padding-top: 76px;
    font-size: 20px;
 }
+
+body {align-content: center;}
+
+.embed-responsive-item{max-width: 1080px;
+max-height: 720px;}
 
 .barra{
    background-color: seagreen;
