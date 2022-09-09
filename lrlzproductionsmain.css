@@ -1,11 +1,17 @@
-header{
+header {
 	background-color: #dcf5ea;
 	padding-bottom: 50px;
    padding-top: 76px;
    font-size: 20px;
 }
 
-body {align-content: center;}
+body {
+
+background-color: #dcf5ea;
+align-content: center;
+font-size: 25px; }
+
+footer { font-size: 18px; }
 
 .embed-responsive-item{max-width: 1080px;
 max-height: 720px;}
