@@ -26,9 +26,7 @@ max-height: 720px;}
 }
 
 .barra2{
-   background-color: seagreen;
-   background: rgba(46, 139, 87, .9);
-   color: white;
+   background-color: white;
    font-family: 'Satisfy', cursive;
    font-size: 20px;
 }
