@@ -9,7 +9,6 @@ header {
 body {
 
 background-color: #dcf5ea;
-align-content: center;
 font-size: 25px; }
 
 footer { font-size: 18px; }
@@ -41,3 +40,6 @@ max-height: 720px;}
 .text-orange{ color: rgb(204, 122, 0); }
 .text-red{ color: rgb(153, 38, 0); }
 .text-brown{ color: rgb(153, 102, 0); }
+
+.imgcard {max-width: 350px;}
+
