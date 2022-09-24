@@ -1,0 +1,68 @@
+//**************************************************************************************//
+//                                Animation Tweak 2021 Ver 1.0                          //
+//                                   ~*~  by Luisa RLZ ~*~                              //
+//**************************************************************************************//
+
+So this is a file that is supossed to work exactly as the typical Animation Tweak
+while also showcasing some very short animations.
+
+To install, place the scripts folder into your game client.
+
+This tweak is meant to be as fast as the normal tweak while also providing
+some "life" to the game.
+
+Flash Bomb delay fixed within this version.
+
+This version contains ALL MONSTERS in-game (vanilla monsters).
+
+To add this tweak to servers which have custom monsters:
+- Open your server's CharacterAction.tx file at scripts/table
+- Copy all 1 to 4 (lance to ami) animation sets from this tweak
+- Paste them into their respective places in the original server file and save
+- Enjoy and send me a beer
+
+~*~ All movements can be further edited. I added notes to the file
+so you can see which lines you have to edit ~*~
+
+This tweak tries to follow what "natural" movements would be on *my* opinion
+however, some melee functions might look a bit clunky as
+I couldn't find any decent short-span animations for them
+I might update this if further versions are created.
+Also, I left crusader animations from a known old tweak intact here.
+Credits to it's original creator (I got it from Hollister myself)
+
+Lastly, as usual, you know I love being credited but you may edit
+and share your very own editions of this tweak.
+
+[ THIS TWEAK CONTAINS THE FOLLOWING CLASSES
+CUSTOM CLASSES MIGHT NOT FUNCTION AS DESIRED
+ALL 1ST ADVANCEMENT CLASSES INCLUDED AS WELL ]
+
+[Lance]
+- Crusader
+- Crusader Shield (no animations tho)
+- Sharp Shooter Gun
+- Sharp Shooter Bow
+- Voyager
+- Voyager no coral on
+
+[Carsise]
+- Champion Hammer
+- Champion Shield (no animations tho)
+- Champion 2 swords
+
+[Phyllis]
+- Crusader
+- Crusader Shield (no animations tho)
+- Sharp Shooter Gun
+- Sharp Shooter Bow
+- Voyager
+- Voyager no coral on
+- Cleric
+- Seal Master
+
+[Ami]
+- Voyager
+- Voyager no coral on
+- Cleric
+- Seal Master
