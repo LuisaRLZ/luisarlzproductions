@@ -18,7 +18,6 @@ footer { font-size: 18px; }
 max-height: 720px;}
 
 .barra{
-   background-color: seagreen;
    background: rgba(46, 139, 87, .9);
    color: white;
    font-family: 'Satisfy', cursive;
@@ -35,5 +34,14 @@ max-height: 720px;}
    max-height: 50px;
 }
 
+.barraimg > a > img{
+   max-height: 50px;
+
+}
+
 .barrahov:hover{
    background-color: mediumseagreen}
+
+.navbar-nav {
+    text-align: center;
+}
