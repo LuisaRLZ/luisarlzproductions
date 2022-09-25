@@ -71,8 +71,13 @@ max-height: 720px;}
 
 .card2 {
   border: none;
-  max-width: 350px;
+  max-width: 400px;
+  min-width: 400px;
   flex-grow: 1;
+}
+
+.card2 > img {
+  max-width: 400px;
 }
 
 .bg-blue {
