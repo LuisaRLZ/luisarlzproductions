@@ -1,0 +1,97 @@
+//**************************************************************************************//
+//                                       All-in-One PKO                                 //
+//                                   ~*~  by Luisa RLZ ~*~                              //
+//**************************************************************************************//
+
+Thank you for downloading this Tweak / Mod! https://luisarlzproductions.com/tweaks/thankyou.html
+
+Make and Submit your own tweak!: https://luisarlzproductions.com/tweaks/submit-a-tweak.html
+
+For more Tweaks and Mods please visit: https://luisarlzproductions.com/tweaks/tweaks-main.html
+or just search for luisarlzproductions.com in google
+
+You really liked this tweak? All pesos donations are beautiful!
+Donate via PayPal: https://www.paypal.com/donate/?hosted_button_id=ET39HSVR23CDW
+
+------------------------------
+:   About This Tweak / Mod   :
+------------------------------
+
+My famous All-in-One package with it's EZ Install Version.
+Download and drag tweaks folder inside main PKO Folder. Replace if needed.
+Then go to your game launcher and click the icons in the right, upper side.
+Select the tweaks you want to use then click 'Activate'. Enjoy!
+
+Tweaks currently contained:
+
+- Classic Camera Tweak
+- Classic Animation Tweak (All mobs)
+- Classic Animation Tweak (No DW mobs)
+- Animation Tweak 2021 (All mobs)
+- Animation Tweak 2021 (No DW mobs)
+- Magic Classes No Melee Tweak
+- HD Floors Tweak
+- Classic Night Argent Tweak
+- HD Night Argent Tweak #1 and #2
+- Seal effect change tweak
+- Yellow TS Tweak
+- Simple Gem Tweak
+- Better Circles in Battle Mode
+- 3 Options for potions and bless effects
+
+Want to know even more about this tweak? Visit https://luisarlzproductions.com/tweaks/all-in-one-pko.html
+
+------------------------------
+:     Sharing This Tweak     :
+------------------------------
+
+As always, you're 100% allowed to download, modify and re-upload these files wherever you wish,
+however, credits to the original author(s) are always appreciated.
+
+To share with your guild and/or friends, just give them the following link or post it in your discord:
+https://luisarlzproductions.com/tweaks/tweakspko.html
+
+Direct file link: https://luisarlzproductions.com/tweaks/files/PKO-EZ-All-In-One.rar
+
+You may also copy and paste text and info from the webpage to your guild's Discord, to save you time.
+
+https://luisarlzproductions.com/tweaks/thankyou.html
+
+------------------------------
+:        Installation        :
+------------------------------
+
+https://www.youtube.com/watch?v=I1J0uzmQUMY
+
+Watch the video above starting from minute 1:23 for fast instructions in most Tweaks Installing!
+
+Before installing any tweak, make sure to create a backup of your files, just in case anything goes wrong!  
+
+If something does go wrong, just put the backed files back or run Version Check from launcher  
+
+Almost every tweak / mod in this page is installed the same way: Download File by clicking any Download 
+Button, then Uncompress the files and put them directly into your Server's client folder.
+
+-- Tip 1: If you don't know where your Server's Client Folder is, just right-click the icon that launches the 
+game, then select "Go to file location".
+
+-- Tip 2: If you can't uncompress the files, you may be missing an uncompressor software. Download one of the 
+following (they're free) and you'll be able to open the files.
+
+Download WinRar: https://www.win-rar.com/start.html?&L=0
+Download WinZip: https://www.winzip.com/en/download/winzip/
+Download 7-zip: https://www.7-zip.org/
+
+-- Tip 3: The tweak is nice, but you feel you could make a better version? find more interesting information 
+at Tweaking Resources and make your very own Mod! Also if you want to share it with the world, make sure to 
+check my Submitting Form!
+
+Tweaking Resources: https://luisarlzproductions.com/tweaks/tweaking-resources.html
+Submitting Form: https://luisarlzproductions.com/tweaks/submit-a-tweak.html
+
+With all of this said, however, some main servers have their very own way to install Tweaks, usually managed 
+from launcher. Make sure to Visit the Tweaks Page for the server you play!
+
+Tweaks for Pirates Online: https://luisarlzproductions.com/tweaks/tweakspo.html
+Tweaks for Pirate King Online: https://luisarlzproductions.com/tweaks/tweakspko.html
+Tweaks for Other Servers: https://luisarlzproductions.com/tweaks/alltweaks.html

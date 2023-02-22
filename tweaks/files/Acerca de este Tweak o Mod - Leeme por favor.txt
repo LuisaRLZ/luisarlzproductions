@@ -1,0 +1,98 @@
+// *********************************************************************************** //
+//                                   Todo-en-Uno                                       //
+//                              ~*~ Por Luisa RLZ ~*~                                  //
+// *********************************************************************************** //
+
+¡Gracias por descargar este Tweak/Mod! https://luisarlzproductions.com/tweaks/thankyou.html
+
+¡Haz y envía tu propio Tweak!: https://luisarlzproductions.com/tweaks/submit-a-tweak.html
+
+Para obtener más tweaks y mods, visite: https://luisarlzproductions.com/tweaks/tweaks-main.html
+o simplemente busca luisarlzproductions.com en google
+
+¿Realmente te gustó este Tweak? ¡Todas las donaciones de pesos son hermosas!
+Dona a través de PayPal: https://www.paypal.com/donate/?hosted_button_id=ET39HSVR23CDW
+
+------------------------------
+: Acerca de este Tweak / Mod :
+------------------------------
+
+Mi famoso Todo-en-Uno con su nuevo modelo de instalacion EZ.
+Descarga el archivo y arrastra y suelta la carpeta tweaks dentro de la carpeta principal
+de PKO. Reemplaza si lo requiere.
+Luego ve a tu lanzador del juego y clickea los iconos de arriba, a la derecha.
+Selecciona el o los tweaks que quieras usar y presiona 'Activate'. Disfrutenlos!
+
+Tweaks contenidos al momento en este archivo:
+
+- Classic Camera Tweak
+- Classic Animation Tweak (All mobs)
+- Classic Animation Tweak (No DW mobs)
+- Animation Tweak 2021 (All mobs)
+- Animation Tweak 2021 (No DW mobs)
+- Magic Classes No Melee Tweak
+- HD Floors Tweak
+- Classic Night Argent Tweak
+- HD Night Argent Tweak #1 and #2
+- Seal effect change tweak
+- Yellow TS Tweak
+- Simple Gem Tweak
+- Better Circles in Battle Mode
+- 3 Options for potions and bless effects
+
+¿Quieres saber aún más sobre este Tweak? Visita https://luisarlzproductions.com/tweaks/all-in-one-pko.html
+
+------------------------------
+:   Compartiendo este Tweak  :
+------------------------------
+
+Como siempre, tienes el completo permiso para descargar, modificar y volver a subir estos archivos donde quieras.
+sin embargo, siempre se agradecen los créditos a los autores originales.
+
+Para compartirlos con tu guild y/o amigos, solo mandales el siguiente enlace o publícalo en tu Discord:
+https://luisarlzproductions.com/tweaks/tweakspko.html
+
+Enlace directo al archivo: https://luisarlzproductions.com/tweaks/files/PKO-EZ-All-In-One.rar
+
+También puedes copiar y pegar texto e información de la página web en el Discord de tu guild, para ahorrar tiempo.
+
+https://luisarlzproductions.com/tweaks/thankyou.html
+
+------------------------------
+:        Installacion        :
+------------------------------
+
+https://www.youtube.com/watch?v=I1J0uzmQUMY
+
+Ve el video de arriba a partir del minuto 1:23 para obtener instrucciones rápidas sobre la instalación de la mayoría de los tweaks.
+
+Antes de instalar cualquier tweaks, asegúrate de crear una copia de seguridad de tus archivos, ¡en caso de que algo salga mal!
+
+Si algo sale mal, simplemente vuelve a colocar los archivos respaldados o ejecuta Version Check desde el launcher.
+
+Casi todos los tweaks/mods en esta página se instalan de la misma manera: Descarga el archivo haciendo clic en cualquier boton
+para descargar, luego descomprime los archivos y colócalos directamente en la carpeta del cliente de tu servidor.
+
+-- Tip 1: si no sabes dónde se encuentra la carpeta del cliente de tu servidor, simplemente haz clic con el botón derecho del mouse 
+en el icono que abre el juego, luego selecciona "Ir a la ubicación del archivo".
+
+-- Tip 2: si no puedes descomprimir los archivos, es posible que te falte un software de descompresión. Descarga uno de los
+siguientes (son gratuitos) y podrás abrir los archivos.
+
+Descarga WinRar: https://www.winrar.es/descargas
+Descarga WinZip: https://www.winzip.com/es/download/winzip/
+Descargar 7-zip: https://www.7-zip.org/
+
+-- Tip 3: el tweak es bueno, pero ¿sientes que podrías hacer una versión mejor? encuentra más información interesante
+en Tweaking Resources y crea tu propio Mod! Además, si quieres compartirlo con el mundo, asegúrate de
+revisar mi formulario de envío de Tweak!
+
+Tweaking Resources: https://luisarlzproductions.com/tweaks/tweaking-resources.html
+Formulario de envío de Tweak: https://luisarlzproductions.com/tweaks/submit-a-tweak.html
+
+Dicho todo esto, sin embargo, algunos servidores principales tienen su propia forma de instalar Tweaks, generalmente administrados
+desde el lanzador. ¡Asegúrate de visitar la página de Tweaks del servidor en el que juegas!
+
+Tweaks para Pirates Online: https://luisarlzproductions.com/tweaks/tweakspo.html
+Tweaks para Pirate King Online: https://luisarlzproductions.com/tweaks/tweakspko.html
+Tweaks para otros servidores: https://luisarlzproductions.com/tweaks/alltweaks.html
