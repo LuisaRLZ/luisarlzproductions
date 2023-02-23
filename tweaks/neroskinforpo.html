@@ -96,7 +96,7 @@
     <div class="card-header" style="background-color: rgb(238, 255, 204)" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <h5 class="text-brown"><b>What is Topperf.exe?</b> <i class="bi bi-caret-down-fill"></i></h5>
+          <h5 class="text-brown"><b>What is Nero UI</b> <i class="bi bi-caret-down-fill"></i></h5>
         </button>
       </h5>
     </div>
@@ -120,13 +120,13 @@ this tweak which simplifies most things to a minimal space usage.
     <div class="card-header" style="background-color: rgb(238, 255, 204)" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <h5 class="text-brown"><b>History of Topperf.exe </b> <i class="bi bi-caret-down-fill"></i></h5>
+          <h5 class="text-brown"><b>History of Nero UI </b> <i class="bi bi-caret-down-fill"></i></h5>
         </button>
       </h5>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        This tweak is one of the oldest existing ones, dating even before I began playing this game, probably around late 2007. Back then PCs were very weak, you know, the cool ancient museum-worthy artifacts with as little as 64mb RAM and the times youtube was actually cool. So, back then, this tweak was very relevant for a lot of people, as it made the difference between being able to play at all or crash every 3 minutes (also back then, the game would take like 10 minutes to open... dear god).<br><br>Nowadays it is nonwhere near as relevant as 15 years ago (wow it's been 15 years already? damn we are old), but it is still a precious file to keep around, and might actually come of some use for some people.<br><br>The cool thing is that thanks to topperf.exe nowadays most modern servers have options to activate and deactivate effects already in-game, such a QoL change!
+        Also one of the oldest tweaks in this game. Back in 2008 we became familiar with Noir's Black Skin Tweak as what it did was to change your User Interface (UI) to a dark version. Back then that was the cool stuff! Then by 2011 it became necessary to avoid looking at ToP2's GIGANTIC UI assets. Since screens were not as big before, the UI alone covered almost a whole half of your game. Several versions of 'Black Skin' were released from 2011 to 2016 adding in new assets or better modifications. Maybe I am wrong, but I feel PO suffers from a similar issue where a couple assets cover too much screen space. As I said, there's technically nothing wrong with that, it is just a matter of a personal preference, hence I made this fast tweak.
       </div>
     </div>
   </div>
@@ -134,13 +134,13 @@ this tweak which simplifies most things to a minimal space usage.
     <div class="card-header" style="background-color: rgb(238, 255, 204)" id="headingThree">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <h5 class="text-brown"><b>How to make my own topperf.exe Tweak </b> <i class="bi bi-caret-down-fill"></i></h5>
+          <h5 class="text-brown"><b>How to make my own UI Tweak </b> <i class="bi bi-caret-down-fill"></i></h5>
         </button>
       </h5>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-        I am the most sorry... but currently I have no idea how to make this one 😅<br><br>However, if you know how to make this one and want to explain how it works to ol' Luisa, please message me at <i class="fab fa-discord me-3"></i>  Discord <b>@LuisaRLZ#3429</b>
+        Soon I will try releasing a video explaining everything in detail. However as a fast explanation - You gotta create the image you want to use for the background first, then the images for HP, SP, etc. Whatever you wish to add. Then... basically experiment with it.<br><br>As a general tip, you will be using the following files from scripts/lua/forms: main.clu, equip.clu, player.clu and minimap.clu<br>Once you see all the weird text, lines that begin with frmDetail = UI_CreateForm are the ones that will create the invisible background to put images onto, and the lines that begin with UI_LoadImage will be the ones you use to add your image. In both cases, the 4 numbers that go like 100, 15, 45, 2 etc mean this, in this exact order: Tall of image, Length of image, Placement of image from left to right, placement of image from up to down.
       </div>
     </div>
   </div>
