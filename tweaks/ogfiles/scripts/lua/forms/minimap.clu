@@ -1,0 +1,263 @@
+-----------------------------------------------------------------------
+-- Game Mini Map
+-----------------------------------------------------------------------	
+
+frmMinimap = UI_CreateForm( "frmMinimap", FALSE, 136, 180, 0, 0, TRUE, FALSE )
+UI_ShowForm( frmMinimap, TRUE )
+UI_AddFormToTemplete( frmMinimap, FORM_MAIN )
+UI_SetFormStyleEx(frmMinimap, 9, 20, 10)
+UI_FormSetIsEscClose( frmMinimap, FALSE )
+
+
+
+--Minimap BG
+imgMinimapT = UI_CreateCompent( frmMinimap, IMAGE_FRAME_NEW_TYPE, "imgMinimapT", 137, 137, 0, 23 )
+UI_LoadFrameImage(imgMinimapT, "texture/ui/blackui1.png", 970, 92, 9, 9, "", 0, 0)
+
+-- Mini Map
+imgMinimapRect = UI_CreateCompent( frmMinimap, IMAGE_TYPE, "imgMinimapRect", 130, 130, 23, 36 )
+
+imgBakTop2 = UI_CreateCompent( frmMinimap, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 140, 20, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 299, 0, 10, 7, "", 0, 0)
+
+--Map Name
+labMapName = UI_CreateCompent( frmMinimap, LABELEX_TYPE, "labMapName", 100, 15, 15, 3 )
+UI_SetCaption( labMapName, "Map Name" )
+UI_SetTextColor( labMapName, COLOR_WHITE )
+UI_SetLabelExFont( labMapName, FONT12B, FALSE, 4284846015 )
+UI_SetLabelExAlign(labMapName, 1)
+
+--Servertime BG
+imgMinimapN = UI_CreateCompent( frmMinimap, IMAGE_TYPE, "imgMinimapN", 137, 29, 0, 163 )
+UI_LoadImage( imgMinimapN, "texture/ui/blackui1.png", NORMAL, 15, 15, 209, 34 )
+UI_SetAlpha( imgMinimapN, 200 )
+
+--Display Server Time
+labServerTime = UI_CreateCompent( frmMinimap, LABELEX_TYPE, "labServerTime", 112, 15, 15, 164 )
+UI_SetCaption( labServerTime, "Time: 99:99:99" )
+UI_SetTextColor( labServerTime, COLOR_WHITE )
+UI_SetLabelExFont( labServerTime, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labServerTime, 1)
+
+--Map Coordenates
+n  = 0
+while 1 do
+	local name = "labMapPos"..n
+	labMapPos = UI_CreateCompent( frmMinimap, LABELEX_TYPE, name, 56, 15, 43, 178 ) 
+	UI_SetCaption( labMapPos, "2200, 2200" )
+	UI_SetTextColor( labMapPos, COLOR_WHITE )
+	UI_SetLabelExFont( labMapPos, FONT12, FALSE, COLOR_WHITE )
+	--UI_SetLabelExAlign(labMapPos, 1)
+
+	if n~=0  then UI_SetIsShow( labMapPos, FALSE ) end
+	
+	n = n + 1
+	if n==10 then break end	
+end
+
+
+
+
+--EXp Bonus
+labExpBonus = UI_CreateCompent( frmMinimap, LABELEX_TYPE, "labExpBonus", 79, 12, 15, 192 )
+UI_SetCaption( labExpBonus, "EXP BONUS: 20%" )
+UI_SetTextColor( labExpBonus, COLOR_WHITE )
+UI_SetLabelExFont( labExpBonus, FONT12B, FALSE, COLOR_WHITE )
+UI_SetIsShow( labExpBonus, FALSE )
+
+
+
+--IGS button
+btnOpenStore = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnOpenStore", 84, 21, 54, 210 )
+UI_LoadButtonImage2(btnOpenStore, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetHint( btnOpenStore, "Accessing Item Mall" )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmMinimap, LABELEX_TYPE, "labtext", 100, 15, 78, 213 )
+UI_SetCaption( labtext, "Item Mall")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12B, FALSE, COLOR_WHITE )
+
+--Cristal icon
+imgIco = UI_CreateCompent( frmMinimap, IMAGE_TYPE, "imgIco", 20, 20, 55, 211 )
+UI_LoadImage( imgIco, "texture/ui/blackui1.png", NORMAL, 20, 20, 135, 92 )
+
+
+
+
+--Battle Pass button
+btnOpenPass = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnOpenPass", 88, 21, 50, 235 )
+UI_LoadButtonImage2(btnOpenPass, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetHint( btnOpenPass, "Accessing Battle Pass" )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmMinimap, LABELEX_TYPE, "labtext", 100, 15, 65, 238 )
+UI_SetCaption( labtext, "Battle Pass")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12B, FALSE, COLOR_WHITE )
+
+--BP icon
+imgIco = UI_CreateCompent( frmMinimap, IMAGE_TYPE, "imgIco", 32, 24, 32, 233 )
+UI_LoadImage( imgIco, "texture/ui/blackui1.png", NORMAL, 32, 24, 27, 91 )
+
+-- Database
+btnOpenDatabase = UI_CreateCompent(frmMinimap, BUTTON_TYPE, "btnOpenDatabase", 84, 21, 54, 260)
+UI_LoadButtonImage2(btnOpenDatabase, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetHint(btnOpenDatabase, "Accessing Item Mall" )
+
+labOpenDatabase = UI_CreateCompent(frmMinimap, LABELEX_TYPE, "labOpenDatabase", 100, 15, 75, 263)
+UI_SetCaption(labOpenDatabase, "Database")
+UI_SetTextColor(labOpenDatabase, COLOR_WHITE)
+UI_SetLabelExFont(labOpenDatabase, FONT12B, FALSE, COLOR_WHITE)
+
+imgOpenDatabase = UI_CreateCompent(frmMinimap, IMAGE_TYPE, "imgOpenDatabase", 20, 20, 50, 260)
+UI_LoadImage(imgOpenDatabase, "texture/ui/blackui1.png", NORMAL, 16, 16, 421, 20)
+
+-- VIP
+btnOpenVip = UI_CreateCompent(frmMinimap, BUTTON_TYPE, "btnOpenVip", 41, 21, 97, 285)
+UI_LoadButtonImage2(btnOpenVip, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+imgVipIcon = UI_CreateCompent( frmMinimap, IMAGE_TYPE, "imgGuildIcon", 22, 22, 88, 285 )
+UI_LoadImage( imgVipIcon, "texture/icon/n0325.tga", NORMAL, 32, 32, 0, 0 )
+
+labOpenVip = UI_CreateCompent(frmMinimap, LABELEX_TYPE, "labOpenVip", 100, 15, 110, 288)
+UI_SetCaption(labOpenVip, "VIP")
+UI_SetTextColor(labOpenVip, COLOR_WHITE)
+UI_SetLabelExFont(labOpenVip, FONT12B, FALSE, COLOR_WHITE)
+
+-- -- Wheel
+-- btnOpenWheel = UI_CreateCompent(frmMinimap, LINKBUTTON_TYPE, "btnOpenWheel", 55, 21, 45, 310)
+-- UI_LoadButtonImage2(btnOpenWheel, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- labOpenWheel = UI_CreateCompent(frmMinimap, LABELEX_TYPE, "labOpenWheel", 100, 15, 53, 313)
+-- UI_SetCaption(labOpenWheel, "Wheel")
+-- UI_SetTextColor(labOpenWheel, COLOR_WHITE)
+-- UI_SetLabelExFont(labOpenWheel, FONT12B, FALSE, COLOR_WHITE)
+
+
+
+--World Map
+btnOpen = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnOpen", 12, 13, 28, 4 )
+
+--Radar
+btnSearch = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnSearch", 12, 13, 4, 66 )
+
+--NPC Search
+btnPosSearch = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnPosSearch", 12, 14, 4, 88 )
+
+--Open Hide Stall button
+chkHideStall = UI_CreateCompent( frmMinimap, CHECK_TYPE, "chkHideStall", 10, 11, 4, 115 )
+
+--Database Button
+btnOpenDB = UI_CreateCompent( frmMinimap, BUTTON_TYPE, "btnOpenDB", 14, 14, 3, 138 ) 
+
+
+-----------------------------------------------------------------------
+-- Radar Coordinates
+-----------------------------------------------------------------------	
+frmSearch = UI_CreateForm( "frmSearch", FALSE, 245, 133, 300, 200, TRUE, FALSE )
+UI_ShowForm( frmSearch, FALSE )
+UI_AddFormToTemplete( frmSearch, FORM_MAIN )
+UI_FormSetIsEscClose( frmSearch, TRUE )
+UI_FormSetHotKey( frmSearch, ALT_KEY, HOTKEY_R )
+UI_SetIsDrag( frmSearch, TRUE )
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmSearch, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 245, 133, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmSearch, BUTTON_TYPE, "btnClose", 10, 10, 216, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmSearch, LABELEX_TYPE, "labTitle", 100, 15, 107, 6 )
+UI_SetCaption( labTitle, "Radar")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+--Select Map
+labtext = UI_CreateCompent( frmSearch, LABELEX_TYPE, "labtext", 100, 15, 18, 40 )
+UI_SetCaption( labtext, "Current Map")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+imginputBG = UI_CreateCompent( frmSearch, IMAGE_FRAME_NEW_TYPE, "imginputBG", 138, 18, 94, 37 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+--Coordinates
+labtext = UI_CreateCompent( frmSearch, LABELEX_TYPE, "labtext", 100, 15, 16, 66 )
+UI_SetCaption( labtext, "Coordinates")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+imginputBG = UI_CreateCompent( frmSearch, IMAGE_FRAME_NEW_TYPE, "imginputBG", 64, 18, 94, 64 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+imginputBG = UI_CreateCompent( frmSearch, IMAGE_FRAME_NEW_TYPE, "imginputBG", 64, 18, 168, 64 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+edtLeft = UI_CreateCompent( frmSearch, EDIT_TYPE, "edtLeft", 45, 20, 105, 66 )
+UI_SetTextColor( edtLeft, COLOR_BLACK )
+UI_SetEditMaxNum( edtLeft, 4 )
+UI_SetEditMaxNumVisible( edtLeft, 4 )
+UI_SetEditFont(edtLeft, DEFAULT_FONT)
+UI_SetTextColor( edtLeft, COLOR_WHITE )
+UI_SetEditCursorColor( edtLeft, COLOR_WHITE )
+
+edtRight = UI_CreateCompent( frmSearch, EDIT_TYPE, "edtRight", 45, 20, 180, 66 )
+UI_SetTextColor( edtRight, COLOR_BLACK )
+UI_SetEditMaxNum( edtRight, 4 )
+UI_SetEditMaxNumVisible( edtRight, 4 )
+UI_SetEditFont(edtRight, DEFAULT_FONT)
+UI_SetTextColor( edtRight, COLOR_WHITE )
+UI_SetEditCursorColor( edtRight, COLOR_WHITE )
+
+
+
+chkID = UI_CreateCompent( frmSearch, CHECK_TYPE, "chkID", 11, 11, 16, 106 )
+UI_LoadImage( chkID, "texture/ui/blackui1.png", UNCHECKED, 11, 11, 165, 64 )
+UI_LoadImage( chkID, "texture/ui/blackui1.png", CHECKED, 11, 11, 153, 64 )
+UI_SetHint( chkID, "Auto trace" )
+
+labtext = UI_CreateCompent( frmSearch, LABELEX_TYPE, "labtext", 100, 15, 32, 106 )
+UI_SetCaption( labtext, "Auto Trace")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+--Button Yes
+btnYes = UI_CreateCompent( frmSearch, BUTTON_TYPE, "btnYes", 69, 28, 144, 96 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetEditEnterButton( edtRight, btnYes )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmSearch, LABELEX_TYPE, "labtext", 100, 15, 157, 101 )
+UI_SetCaption( labtext, "Confirm")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+btnNo = UI_CreateCompent( frmSearch, BUTTON_TYPE, "btnNo", 41, 19, 102, 102 )
+UI_SetButtonModalResult( btnNo, BUTTON_CLOSE )
+
+
+--Combo Box
+cboMap  = UI_CreateCompent( frmSearch, COMBO_TYPE, "cboMap", 105, 30, 100, 37 )
+UI_ComboSetStyle( cboMap, TRUE )
+UI_LoadComboImage( cboMap, "", 81, 20, 106, 39, "texture/ui/search.tga", 1, 1, 130, 140, FALSE )
+UI_ComboSetTextColor( cboMap, COLOR_WHITE )
+
+lstMap = UI_GetList( cboMap )
+UI_SetListFontColor( lstMap, COLOR_WHITE, COLOR_WHITE )
+UI_LoadImage( lstMap, "texture/ui/FrmItem.png", COMPENT_BACK, 102, 125, 537, 407 )
+UI_AddListText( lstMap, "Ascaron" )
+UI_AddListText( lstMap, "Magical Ocean" )
+UI_AddListText( lstMap, "Deep Blue" )
+UI_AddListText( lstMap, "Pirate Hideout" )
+UI_AddListText( lstMap, "Eastern Goaf" )
+UI_SetListIsMouseFollow( lstMap, TRUE)
+UI_ListLoadSelectImage( lstMap, "texture/ui/FrmItem.png", 9, 9, 367, 539 )
+UI_ComboSetTextColor( lstMap, COLOR_WHITE )

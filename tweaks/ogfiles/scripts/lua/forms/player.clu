@@ -1,0 +1,1606 @@
+-----------------------------------------------------------------------
+-- Player Trade
+-----------------------------------------------------------------------	
+frmPlayertrade = UI_CreateForm( "frmPlayertrade", FALSE, 256, 393, 240, 468, TRUE, FALSE )
+--UI_FormSetHotKey( frmPlayertrade, ALT_KEY, HOTKEY_ )
+UI_ShowForm( frmPlayertrade, TRUE )
+UI_SetIsDrag( frmPlayertrade, TRUE )
+UI_AddFormToTemplete( frmPlayertrade, FORM_MAIN )
+UI_SetFormStyle( frmPlayertrade, 1 )
+UI_FormSetIsEscClose( frmPlayertrade, FALSE )
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmPlayertrade, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 257, 393, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnClose", 10, 10, 227, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labTitle", 100, 15, 100, 6 )
+UI_SetCaption( labTitle, "Item Trade")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+--Titles Filter
+btnTitle1 = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnTitle1", 245, 21, 6, 29 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+--Box
+imgBoxbg = UI_CreateCompent( frmPlayertrade, IMAGE_FRAME_NEW_TYPE, "imgBoxbg", 245, 124, 6, 48 )
+UI_LoadFrameImage(imgBoxbg, "texture/ui/blackui1.png", 229, 36, 7, 7, "", 0, 0)
+UI_SetAlpha( imgBoxbg, 128 )
+
+--Trade text
+labtradeItem = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labtradeItem", 100, 15, 12, 32 )
+UI_SetCaption( labtradeItem, "Trade Items:" )
+UI_SetTextColor( labtradeItem, COLOR_WHITE )
+UI_SetLabelExFont( labtradeItem, FONT12, FALSE, COLOR_WHITE )
+
+--Players names
+labPlayertradeName = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labPlayertradeName", 100, 15, 112, 32 )
+UI_SetCaption( labPlayertradeName, "Player1 / Player2" )
+UI_SetTextColor( labPlayertradeName, COLOR_WHITE )
+UI_SetLabelExFont( labPlayertradeName, FONT12, FALSE, COLOR_WHITE )
+
+for i=0, 11, 1 do
+--Grid Slot
+local imgslotimg1 = UI_CreateCompent( frmPlayertrade, IMAGE_TYPE, "imgslotimg1", 36, 36, 10 + math.floor(i / 2) * 40, 59 + math.mod(i, 2) * 41)  
+UI_LoadImage( imgslotimg1, "texture/ui/blackui1.png", NORMAL, 36, 36, 360, 115 )
+end
+
+--Grid 1
+grdBuy = UI_CreateCompent( frmPlayertrade, GOODS_GRID_TYPE, "grdBuy", 240, 85, 12, 60 ) 
+UI_SetGridSpace( grdBuy, 8, 9 )
+UI_SetGridContent( grdBuy, 2, 6 )
+UI_SetGridUnitSize( grdBuy, 32, 32 )
+UI_SetMargin( grdBuy, 0, 0, 0, 0 )
+UI_SetIsEnabled( grdBuy, FALSE )
+
+--Input Bg
+imginputBG = UI_CreateCompent( frmPlayertrade, IMAGE_FRAME_NEW_TYPE, "imginputBG", 135, 18, 108, 144 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+--CoinIcon
+imgsCoinIcon = UI_CreateCompent( frmPlayertrade, IMAGE_TYPE, "imgsCoinIcon", 14, 14, 109, 145 )
+UI_LoadImage( imgsCoinIcon, "texture/ui/blackui1.png", NORMAL, 14, 14, 254, 39 )
+
+--Gold quantity
+labOtherGold = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labOtherGold", 100, 15, 134, 145 )
+UI_SetCaption( labOtherGold, "0" )
+UI_SetTextColor( labOtherGold, COLOR_WHITE )
+UI_SetLabelExFont( labOtherGold, FONT12, FALSE, COLOR_BLACK )
+
+
+--Titles Filter
+imgMineItem = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "imgMineItem", 245, 21, 6, 194 )
+UI_LoadButtonImage2(imgMineItem, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+--Box
+imgBoxbg = UI_CreateCompent( frmPlayertrade, IMAGE_FRAME_NEW_TYPE, "imgBoxbg", 245, 134, 6, 213 )
+UI_LoadFrameImage(imgBoxbg, "texture/ui/blackui1.png", 229, 36, 7, 7, "", 0, 0)
+UI_SetAlpha( imgBoxbg, 128 )
+
+
+--Confirm
+labOtherYes = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labOtherYes", 100, 15, 60, 197 )
+UI_SetCaption( labOtherYes, "Confirm" )
+UI_SetTextColor( labOtherYes, COLOR_WHITE )
+UI_SetLabelExFont( labOtherYes, FONT12, FALSE, COLOR_WHITE )
+
+--Check Confirm
+chkYes = UI_CreateCompent( frmPlayertrade, CHECK_TYPE, "chkYes", 11, 11, 107, 198 )
+UI_LoadImage( chkYes, "texture/ui/blackui1.png", UNCHECKED, 11, 11, 165, 64 )
+UI_LoadImage( chkYes, "texture/ui/blackui1.png", CHECKED, 11, 11, 153, 64 )
+UI_SetIsEnabled( chkYes, FALSE )
+
+
+--Trade
+labOtherTrade = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labOtherTrade", 100, 15, 146, 197 )
+UI_SetCaption( labOtherTrade, "Trade" )
+UI_SetTextColor( labOtherTrade, COLOR_WHITE )
+UI_SetLabelExFont( labOtherTrade, FONT12, FALSE, COLOR_BLACK )
+
+--Trade Checkbox
+chkTrade = UI_CreateCompent( frmPlayertrade, CHECK_TYPE, "chkTrade", 11, 11, 182, 199 )
+UI_LoadImage( chkTrade, "texture/ui/blackui1.png", UNCHECKED, 11, 11, 165, 64 )
+UI_LoadImage( chkTrade, "texture/ui/blackui1.png", CHECKED, 11, 11, 153, 64 )
+UI_SetIsEnabled( chkTrade, FALSE )
+
+
+for i=0, 11, 1 do
+    --Grid Slot
+    local imgslotimg1 = UI_CreateCompent( frmPlayertrade, IMAGE_TYPE, "imgslotimg1", 36, 36, 10 + math.floor(i / 2) * 40, 224 + math.mod(i, 2) * 41)  
+    UI_LoadImage( imgslotimg1, "texture/ui/blackui1.png", NORMAL, 36, 36, 360, 115 )
+end
+
+--Grid 2
+grdSale = UI_CreateCompent( frmPlayertrade, GOODS_GRID_TYPE, "grdSale", 233, 85, 12, 225 ) 
+UI_SetGridSpace( grdSale, 8, 9 )
+UI_SetGridContent( grdSale, 2, 6 )
+UI_SetGridUnitSize( grdSale, 32, 32 )
+UI_SetMargin( grdSale, 0, 0, 0, 0 )
+
+
+--Input Bg
+imginputBG = UI_CreateCompent( frmPlayertrade, IMAGE_FRAME_NEW_TYPE, "imginputBG", 135, 18, 108, 314 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+--CoinIcon
+imgsCoinIcon = UI_CreateCompent( frmPlayertrade, IMAGE_TYPE, "imgsCoinIcon", 14, 14, 109, 315 )
+UI_LoadImage( imgsCoinIcon, "texture/ui/blackui1.png", NORMAL, 14, 14, 254, 39 )
+
+--Gold Quantity
+labSelfGold = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labSelfGold", 100, 15, 134, 315 )
+UI_SetCaption( labSelfGold, "0" )
+UI_SetTextColor( labSelfGold, COLOR_WHITE )
+UI_SetLabelExFont( labSelfGold, FONT12, FALSE, COLOR_BLACK )
+
+
+--Button Add Gold
+btnGold = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnGold", 69, 28, 20, 309 )
+UI_LoadButtonImage2(btnGold, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetHint( btnGold, "Click here to input gold for trade" )
+
+--Add text
+labGoldadd = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labGoldadd", 100, 15, 42, 316 )
+UI_SetCaption( labGoldadd, "Add" )
+UI_SetTextColor( labGoldadd, COLOR_WHITE )
+UI_SetLabelExFont( labGoldadd, FONT12, FALSE, COLOR_WHITE )
+
+
+
+--Confirm
+btnYes = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnYes", 69, 28, 45, 352 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+--Add text
+labYes = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labYes", 100, 15, 57, 359 )
+UI_SetCaption( labYes, "Confirm" )
+UI_SetTextColor( labYes, COLOR_WHITE )
+UI_SetLabelExFont( labYes, FONT12, FALSE, COLOR_WHITE )
+
+
+--Trade
+btnTrade = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnTrade", 69, 28, 143, 352 )
+UI_LoadButtonImage2(btnTrade, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+--Add text
+labTrade = UI_CreateCompent( frmPlayertrade, LABELEX_TYPE, "labTrade", 100, 15, 161, 359 )
+UI_SetCaption( labTrade, "Trade" )
+UI_SetTextColor( labTrade, COLOR_WHITE )
+UI_SetLabelExFont( labTrade, FONT12, FALSE, COLOR_WHITE )
+
+--Cancel
+btnNo = UI_CreateCompent( frmPlayertrade, BUTTON_TYPE, "btnNo", 0, 0, 0, 0 )
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Accept Friend Request
+-----------------------------------------------------------------------
+frmAcceptFrnd = UI_CreateForm( "frmAcceptFrnd",  FALSE, 205, 105, 0, 0, FALSE, FALSE )
+UI_ShowForm( frmAcceptFrnd, FALSE )
+UI_AddFormToTemplete( frmAcceptFrnd, FORM_MAIN )
+UI_SetFormStyle( frmAcceptFrnd, 0 )
+UI_SetIsDrag( frmAcceptFrnd, TRUE )
+UI_FormSetIsEscClose( frmAcceptFrnd, FALSE )
+
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmAcceptFrnd, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 203, 105, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmAcceptFrnd, BUTTON_TYPE, "btnClose", 10, 10, 174, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmAcceptFrnd, LABELEX_TYPE, "labTitle", 100, 15, 57, 6 )
+UI_SetCaption( labTitle, "Friend Request")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+
+
+--Player Name
+labFrndName = UI_CreateCompent( frmAcceptFrnd, LABELEX_TYPE, "labFrndName", 150, 15, 28, 24 )
+UI_SetCaption( labFrndName, "Player Name" )
+UI_SetTextColor( labFrndName, COLOR_WHITE )
+UI_SetLabelExFont( labFrndName, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labFrndName, 1)
+
+--Text
+labFrnd = UI_CreateCompent( frmAcceptFrnd, LABELEX_TYPE, "labFrnd", 23, 11, 52, 40 )
+UI_SetCaption( labFrnd, "Be Added as Friend" )
+UI_SetTextColor( labFrnd, COLOR_WHITE )
+UI_SetLabelExFont( labFrnd, FONT12, FALSE, COLOR_WHITE )
+
+
+--Confirm
+btnYes = UI_CreateCompent( frmAcceptFrnd, BUTTON_TYPE, "btnYes", 69, 28, 22, 68 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmAcceptFrnd, LABELEX_TYPE, "labtext", 100, 15, 34, 75 )
+UI_SetCaption( labtext, "Confirm")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--Confirm
+btnNo = UI_CreateCompent( frmAcceptFrnd, BUTTON_TYPE, "btnNo", 69, 28, 111, 68 )
+UI_LoadButtonImage2(btnNo, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmAcceptFrnd, LABELEX_TYPE, "labtext", 100, 15, 125, 75 )
+UI_SetCaption( labtext, "Cancel")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+-- �����Ƿ����
+-----------------------------------------------------------------------
+frmAcceptGroup = UI_CreateForm( "frmAcceptGroup",  FALSE, 185, 101, 0, 0, FALSE, FALSE )
+--UI_LoadFormImage( frmAcceptGroup, "texture/ui/sure.dds", 185, 101, 0, 0, "", 0, 0 )
+UI_ShowForm( frmAcceptGroup, FALSE )
+UI_AddFormToTemplete( frmAcceptGroup, FORM_MAIN )
+UI_SetFormStyle( frmAcceptGroup, 0 )
+UI_SetIsDrag( frmAcceptGroup, TRUE )
+UI_FormSetIsEscClose( frmAcceptGroup, FALSE )
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmAcceptGroup, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 203, 105, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmAcceptGroup, BUTTON_TYPE, "btnClose", 10, 10, 174, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmAcceptGroup, LABELEX_TYPE, "labTitle", 100, 15, 57, 6 )
+UI_SetCaption( labTitle, "Party Request")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+--Player Name
+labGroupName = UI_CreateCompent( frmAcceptGroup, LABELEX_TYPE, "labGroupName", 150, 15, 28, 24 )
+UI_SetCaption( labGroupName, "Player Name" )
+UI_SetTextColor( labGroupName, COLOR_WHITE )
+UI_SetLabelExFont( labGroupName, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labGroupName, 1)
+
+labGroup = UI_CreateCompent( frmAcceptGroup, LABELEX_TYPE, "labGroup", 23, 11, 52, 40 )
+UI_SetCaption( labGroup, "Request party" )
+UI_SetTextColor( labGroup, COLOR_WHITE )
+UI_SetLabelExFont( labGroup, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+--Confirm
+btnYes = UI_CreateCompent( frmAcceptGroup, BUTTON_TYPE, "btnYes", 69, 28, 22, 68 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmAcceptGroup, LABELEX_TYPE, "labtext", 100, 15, 34, 75 )
+UI_SetCaption( labtext, "Confirm")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--Confirm
+btnNo = UI_CreateCompent( frmAcceptGroup, BUTTON_TYPE, "btnNo", 69, 28, 111, 68 )
+UI_LoadButtonImage2(btnNo, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmAcceptGroup, LABELEX_TYPE, "labtext", 100, 15, 125, 75 )
+UI_SetCaption( labtext, "Cancel")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+-----------------------------------------------------------------------
+-- Right Mouse MenuClick
+-----------------------------------------------------------------------	
+mainMouseRight = UI_CreateCompent( frmMain800, MENU_TYPE, "mainMouseRight", 90, 97, 240, 468 )
+UI_MenuLoadImage( mainMouseRight, TRUE, FALSE, "texture/ui/right.png", 5, 5, 10, 10, "texture/ui/right.png", 5, 5 )
+--UI_SetMargin( mainMouseRight, 10, 5, 5, 5 )
+
+
+--Box
+imgBoxbg = UI_CreateCompent( mainMouseRight, IMAGE_FRAME_NEW_TYPE, "imgBoxbg", 90, 180, 0, 0 )
+UI_LoadFrameImage(imgBoxbg, "texture/ui/blackui1.png", 229, 36, 7, 7, "", 0, 0)
+UI_SetAlpha( imgBoxbg, 210 )
+
+
+-- Selector
+UI_MenuLoadSelect( mainMouseRight, "texture/ui/blackui1.png", 21, 21, 445, 41  )
+
+--Text Color
+UI_MenuSetColor(mainMouseRight, COLOR_WHITE, 4284182653)
+
+-- Items
+UI_MenuAddText( mainMouseRight, "Trade" )
+UI_MenuAddText( mainMouseRight, "Add Friend" )
+UI_MenuAddText( mainMouseRight, "Party Invite" )
+UI_MenuAddText( mainMouseRight, "Leave Party" )
+UI_MenuAddText( mainMouseRight, "PM" )
+UI_MenuAddText( mainMouseRight, "Cargo Trade" )
+UI_MenuAddText( mainMouseRight, "View Stall" )
+UI_MenuAddText( mainMouseRight, "1 VS 1" )
+UI_MenuAddText( mainMouseRight, "M VS M" )
+UI_MenuAddText( mainMouseRight, "Mentor" )
+UI_MenuAddText( mainMouseRight, "Disciple" )
+UI_MenuAddText( mainMouseRight, "Mute" )
+UI_MenuAddText( mainMouseRight, "Unmute" )
+
+
+
+-----------------------------------------------------------------------
+-- Party Member 1
+-----------------------------------------------------------------------	
+frmTeamMenber1 = UI_CreateForm( "frmTeamMenber1", FALSE, 160, 50, 0, 90, TRUE, FALSE )
+--UI_FormSetHotKey( frmTeamMenber1, ALT_KEY, HOTKEY_ ) 
+UI_ShowForm( frmTeamMenber1, FLASE )
+UI_SetIsDrag( frmTeamMenber1, FLASE )
+UI_AddFormToTemplete( frmTeamMenber1, FORM_MAIN )
+UI_FormSetIsEscClose( frmTeamMenber1, FALSE )
+
+--BG
+imgBG = UI_CreateCompent( frmTeamMenber1, IMAGE_TYPE, "imgBG", 208, 49, 0, 0 )
+UI_LoadImage( imgBG, "texture/ui/blackui1.png", NORMAL, 157, 47, 0, 120 )
+
+--Player Name
+labMenber1Name = UI_CreateCompent( frmTeamMenber1, LABELEX_TYPE, "labMenber1Name", 100, 15, 63, 12 )
+UI_SetCaption( labMenber1Name, "Player Name" )
+UI_SetTextColor( labMenber1Name, COLOR_WHITE )
+UI_SetLabelExFont( labMenber1Name, FONT12, FALSE, COLOR_BLACK )
+
+--Player Lv
+labFLv = UI_CreateCompent( frmTeamMenber1, LABELEX_TYPE, "labFLv", 100, 15, 183, 12 )
+UI_SetCaption( labFLv, "99" )
+UI_SetTextColor( labFLv, COLOR_WHITE )
+UI_SetLabelExFont( labFLv, FONT12, FALSE, COLOR_BLACK )
+
+
+imgBackDrop = UI_CreateCompent( frmTeamMenber1, IMAGE_TYPE, "imgBackDrop", 25, 24, 6, 6)
+
+--Player HP
+proTeamMenber1HP = UI_CreateCompent( frmTeamMenber1, PROGRESS_TYPE, "proTeamMenber1HP", 150, 6, 62, 26 )
+UI_LoadScaleImage( proTeamMenber1HP, "texture/ui/blackui1.png", PROGRESS_PROGRESS, 108, 6, 153, 83, 1.3, 1.0 )
+UI_SetHint( proTeamMenber1HP, "HP" )
+UI_SetProgressHintStyle( proTeamMenber1HP, PROGRESS_HINT_NUM )
+
+--Player SP
+proTeamMenber1SP = UI_CreateCompent( frmTeamMenber1, PROGRESS_TYPE, "proTeamMenber1SP", 50, 4, 1, 59 )
+--UI_LoadScaleImage( proTeamMenber1SP, "texture/ui/StartF.dds", PROGRESS_PROGRESS, 50, 4, 124, 16, 1.0, 1.0 )
+UI_SetHint( proTeamMenber1SP, "SP" )
+UI_SetProgressHintStyle( proTeamMenber1SP, PROGRESS_HINT_NUM )
+
+-- Player 3D Head
+d3dHead = UI_CreateCompent( frmTeamMenber1, UI3D_COMPENT_TYPE, "d3dHead", 39, 39, 12, 5 )
+
+d3dDown = UI_CreateCompent( frmTeamMenber1, UI3D_COMPENT_TYPE, "d3dDown", 192, 55, 12, 5 )
+
+--�������ְҵͼ��
+imgobj = UI_CreateCompent( frmTeamMenber1, IMAGE_TYPE, "imgobj", 9, 9, 23, 21 )
+UI_SetMaxImage( imgobj, 19 )
+
+imgLeader = UI_CreateCompent( frmTeamMenber1, IMAGE_TYPE, "imgLeader", 9, 9, 0, 0 )
+UI_LoadImage( imgLeader, "texture/ui/new3.png", NORMAL, 9, 9, 0, 161 )
+
+
+
+
+-----------------------------------------------------------------------
+-- Party Member 2
+-----------------------------------------------------------------------	
+frmTeamMenber2 = UI_CreateForm( "frmTeamMenber2", FALSE, 160, 50, 0, 160, TRUE, FALSE )
+--UI_FormSetHotKey( frmTeamMenber2, ALT_KEY, HOTKEY_ ) 
+UI_ShowForm( frmTeamMenber2, FLASE )
+UI_SetIsDrag( frmTeamMenber2, FLASE )
+UI_AddFormToTemplete( frmTeamMenber2, FORM_MAIN )
+UI_FormSetIsEscClose( frmTeamMenber2, FALSE )
+
+--BG
+imgBG = UI_CreateCompent( frmTeamMenber2, IMAGE_TYPE, "imgBG", 208, 49, 0, 0 )
+UI_LoadImage( imgBG, "texture/ui/blackui1.png", NORMAL, 157, 47, 0, 120 )
+
+--Player Name
+labMenber2Name = UI_CreateCompent( frmTeamMenber2, LABELEX_TYPE, "labMenber2Name", 100, 15, 63, 12 )
+UI_SetCaption( labMenber2Name, "Player Name" )
+UI_SetTextColor( labMenber2Name, COLOR_WHITE )
+UI_SetLabelExFont( labMenber2Name, FONT12, FALSE, COLOR_BLACK )
+
+--Player Lv
+labFLv = UI_CreateCompent( frmTeamMenber2, LABELEX_TYPE, "labFLv", 100, 15, 183, 12 )
+UI_SetCaption( labFLv, "99" )
+UI_SetTextColor( labFLv, COLOR_WHITE )
+UI_SetLabelExFont( labFLv, FONT12, FALSE, COLOR_BLACK )
+
+
+imgBackDrop = UI_CreateCompent( frmTeamMenber2, IMAGE_TYPE, "imgBackDrop", 25, 24, 6, 6)
+
+--Player HP
+proTeamMenber2HP = UI_CreateCompent( frmTeamMenber2, PROGRESS_TYPE, "proTeamMenber2HP", 150, 6, 62, 26 )
+UI_LoadScaleImage( proTeamMenber2HP, "texture/ui/blackui1.png", PROGRESS_PROGRESS, 108, 6, 153, 83, 1.3, 1.0 )
+UI_SetHint( proTeamMenber2HP, "HP" )
+UI_SetProgressHintStyle( proTeamMenber2HP, PROGRESS_HINT_NUM )
+
+--Player SP
+proTeamMenber2SP = UI_CreateCompent( frmTeamMenber2, PROGRESS_TYPE, "proTeamMenber2SP", 50, 4, 1, 59 )
+--UI_LoadScaleImage( proTeamMenber2SP, "texture/ui/StartF.dds", PROGRESS_PROGRESS, 50, 4, 124, 16, 1.0, 1.0 )
+UI_SetHint( proTeamMenber2SP, "SP" )
+UI_SetProgressHintStyle( proTeamMenber2SP, PROGRESS_HINT_NUM )
+
+-- Player 3D Head
+d3dHead = UI_CreateCompent( frmTeamMenber2, UI3D_COMPENT_TYPE, "d3dHead", 39, 39, 12, 5 )
+
+d3dDown = UI_CreateCompent( frmTeamMenber2, UI3D_COMPENT_TYPE, "d3dDown", 192, 55, 12, 5 )
+
+--�������ְҵͼ��
+imgobj = UI_CreateCompent( frmTeamMenber2, IMAGE_TYPE, "imgobj", 9, 9, 23, 21 )
+UI_SetMaxImage( imgobj, 19 )
+
+imgLeader = UI_CreateCompent( frmTeamMenber2, IMAGE_TYPE, "imgLeader", 9, 9, 0, 0 )
+UI_LoadImage( imgLeader, "texture/ui/new3.png", NORMAL, 9, 9, 0, 161 )
+
+-----------------------------------------------------------------------
+-- Party Member 3
+-----------------------------------------------------------------------	
+frmTeamMenber3 = UI_CreateForm( "frmTeamMenber3", FALSE, 160, 50, 0, 230, TRUE, FALSE )
+--UI_FormSetHotKey( frmTeamMenber3, ALT_KEY, HOTKEY_ ) 
+UI_ShowForm( frmTeamMenber3, FLASE )
+UI_SetIsDrag( frmTeamMenber3, FLASE )
+UI_AddFormToTemplete( frmTeamMenber3, FORM_MAIN )
+UI_FormSetIsEscClose( frmTeamMenber3, FALSE )
+
+--BG
+imgBG = UI_CreateCompent( frmTeamMenber3, IMAGE_TYPE, "imgBG", 208, 49, 0, 0 )
+UI_LoadImage( imgBG, "texture/ui/blackui1.png", NORMAL, 157, 47, 0, 120 )
+
+--Player Name
+labMenber3Name = UI_CreateCompent( frmTeamMenber3, LABELEX_TYPE, "labMenber3Name", 100, 15, 63, 12 )
+UI_SetCaption( labMenber3Name, "Player Name" )
+UI_SetTextColor( labMenber3Name, COLOR_WHITE )
+UI_SetLabelExFont( labMenber3Name, FONT12, FALSE, COLOR_BLACK )
+
+--Player Lv
+labFLv = UI_CreateCompent( frmTeamMenber3, LABELEX_TYPE, "labFLv", 100, 15, 183, 12 )
+UI_SetCaption( labFLv, "99" )
+UI_SetTextColor( labFLv, COLOR_WHITE )
+UI_SetLabelExFont( labFLv, FONT12, FALSE, COLOR_BLACK )
+
+
+imgBackDrop = UI_CreateCompent( frmTeamMenber3, IMAGE_TYPE, "imgBackDrop", 25, 24, 6, 6)
+
+--Player HP
+proTeamMenber3HP = UI_CreateCompent( frmTeamMenber3, PROGRESS_TYPE, "proTeamMenber3HP", 150, 6, 62, 26 )
+UI_LoadScaleImage( proTeamMenber3HP, "texture/ui/blackui1.png", PROGRESS_PROGRESS, 108, 6, 153, 83, 1.3, 1.0 )
+UI_SetHint( proTeamMenber3HP, "HP" )
+UI_SetProgressHintStyle( proTeamMenber3HP, PROGRESS_HINT_NUM )
+
+--Player SP
+proTeamMenber3SP = UI_CreateCompent( frmTeamMenber3, PROGRESS_TYPE, "proTeamMenber3SP", 50, 4, 1, 59 )
+--UI_LoadScaleImage( proTeamMenber3SP, "texture/ui/StartF.dds", PROGRESS_PROGRESS, 50, 4, 124, 16, 1.0, 1.0 )
+UI_SetHint( proTeamMenber3SP, "SP" )
+UI_SetProgressHintStyle( proTeamMenber3SP, PROGRESS_HINT_NUM )
+
+-- Player 3D Head
+d3dHead = UI_CreateCompent( frmTeamMenber3, UI3D_COMPENT_TYPE, "d3dHead", 39, 39, 12, 5 )
+
+d3dDown = UI_CreateCompent( frmTeamMenber3, UI3D_COMPENT_TYPE, "d3dDown", 192, 55, 12, 5 )
+
+--�������ְҵͼ��
+imgobj = UI_CreateCompent( frmTeamMenber3, IMAGE_TYPE, "imgobj", 9, 9, 23, 21 )
+UI_SetMaxImage( imgobj, 19 )
+
+imgLeader = UI_CreateCompent( frmTeamMenber3, IMAGE_TYPE, "imgLeader", 9, 9, 0, 0 )
+UI_LoadImage( imgLeader, "texture/ui/new3.png", NORMAL, 9, 9, 0, 161 )
+
+
+
+-----------------------------------------------------------------------
+-- Party Member 4
+-----------------------------------------------------------------------	
+frmTeamMenber4 = UI_CreateForm( "frmTeamMenber4", FALSE, 160, 50, 0, 300, TRUE, FALSE )
+--UI_FormSetHotKey( frmTeamMenber4, ALT_KEY, HOTKEY_ ) 
+UI_ShowForm( frmTeamMenber4, FLASE )
+UI_SetIsDrag( frmTeamMenber4, FLASE )
+UI_AddFormToTemplete( frmTeamMenber4, FORM_MAIN )
+UI_FormSetIsEscClose( frmTeamMenber4, FALSE )
+
+--BG
+imgBG = UI_CreateCompent( frmTeamMenber4, IMAGE_TYPE, "imgBG", 208, 49, 0, 0 )
+UI_LoadImage( imgBG, "texture/ui/blackui1.png", NORMAL, 157, 47, 0, 120 )
+
+--Player Name
+labMenber4Name = UI_CreateCompent( frmTeamMenber4, LABELEX_TYPE, "labMenber4Name", 100, 15, 63, 12 )
+UI_SetCaption( labMenber4Name, "Player Name" )
+UI_SetTextColor( labMenber4Name, COLOR_WHITE )
+UI_SetLabelExFont( labMenber4Name, FONT12, FALSE, COLOR_BLACK )
+
+--Player Lv
+labFLv = UI_CreateCompent( frmTeamMenber4, LABELEX_TYPE, "labFLv", 100, 15, 183, 12 )
+UI_SetCaption( labFLv, "99" )
+UI_SetTextColor( labFLv, COLOR_WHITE )
+UI_SetLabelExFont( labFLv, FONT12, FALSE, COLOR_BLACK )
+
+
+imgBackDrop = UI_CreateCompent( frmTeamMenber4, IMAGE_TYPE, "imgBackDrop", 25, 24, 6, 6)
+
+--Player HP
+proTeamMenber4HP = UI_CreateCompent( frmTeamMenber4, PROGRESS_TYPE, "proTeamMenber4HP", 150, 6, 62, 26 )
+UI_LoadScaleImage( proTeamMenber4HP, "texture/ui/blackui1.png", PROGRESS_PROGRESS, 108, 6, 153, 83, 1.3, 1.0 )
+UI_SetHint( proTeamMenber4HP, "HP" )
+UI_SetProgressHintStyle( proTeamMenber4HP, PROGRESS_HINT_NUM )
+
+--Player SP
+proTeamMenber4SP = UI_CreateCompent( frmTeamMenber4, PROGRESS_TYPE, "proTeamMenber4SP", 50, 4, 1, 59 )
+--UI_LoadScaleImage( proTeamMenber4SP, "texture/ui/StartF.dds", PROGRESS_PROGRESS, 50, 4, 124, 16, 1.0, 1.0 )
+UI_SetHint( proTeamMenber4SP, "SP" )
+UI_SetProgressHintStyle( proTeamMenber4SP, PROGRESS_HINT_NUM )
+
+-- Player 3D Head
+d3dHead = UI_CreateCompent( frmTeamMenber4, UI3D_COMPENT_TYPE, "d3dHead", 39, 39, 12, 5 )
+
+d3dDown = UI_CreateCompent( frmTeamMenber4, UI3D_COMPENT_TYPE, "d3dDown", 192, 55, 12, 5 )
+
+--�������ְҵͼ��
+imgobj = UI_CreateCompent( frmTeamMenber4, IMAGE_TYPE, "imgobj", 9, 9, 23, 21 )
+UI_SetMaxImage( imgobj, 19 )
+
+imgLeader = UI_CreateCompent( frmTeamMenber4, IMAGE_TYPE, "imgLeader", 9, 9, 0, 0 )
+UI_LoadImage( imgLeader, "texture/ui/new3.png", NORMAL, 9, 9, 0, 161 )
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Define Monster Mob Enemy info  interface
+-----------------------------------------------------------------------	
+
+frmMobInfo = UI_CreateForm( "frmMobInfo", FALSE, 184, 40, 0, 16, TRUE, FALSE ) 
+UI_ShowForm( frmMobInfo, TRUE )
+UI_SetIsDrag( frmMobInfo, TRUE )
+UI_AddFormToTemplete( frmMobInfo, FORM_MAIN )
+UI_FormSetIsEscClose( frmMobInfo, TRUE )
+UI_SetFormStyleEx( frmMobInfo, 4 , 240, 0)
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmMobInfo, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 186, 29, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 512, 71, 12, 9, "", 0, 0)
+
+
+
+--Create Name Text
+labStateMobName = UI_CreateCompent( frmMobInfo, LABELEX_TYPE, "labStateMobName", 100, 15, 34, 5 )
+UI_SetCaption( labStateMobName, "Player Name" )
+UI_SetTextColor( labStateMobName, COLOR_WHITE )
+UI_SetLabelExFont( labStateMobName, FONT12, TRUE, 2e5480 )
+
+--Create Mob Level 
+labMobLv = UI_CreateCompent( frmMobInfo, LABELEX_TYPE, "labMobLv", 14, 9, 158, 5 )
+UI_SetTextColor( labMobLv, COLOR_WHITE )
+UI_SetLabelExFont( labMobLv, FONT12, FALSE, COLOR_BLACK )
+UI_SetCaption( labMobLv, "99" )
+
+-- Hp bg
+imgHpBG = UI_CreateCompent( frmMobInfo, IMAGE_TYPE, "imgHpBG", 146, 6, 34, 19 )
+UI_LoadImage( imgHpBG, "texture/ui/blackui1.png", NORMAL, 108, 6, 550, 70 )
+
+--Create Mob HP Bar
+proMobHP = UI_CreateCompent( frmMobInfo, PROGRESS_TYPE, "proMobHP", 146, 6, 34, 19 )
+UI_LoadScaleImage( proMobHP, "texture/ui/blackui1.png", PROGRESS_PROGRESS, 146, 6, 335, 64, 1.0, 1.0 )
+UI_SetHint( proMobHP, "HP" )
+UI_SetProgressHintStyle( proMobHP, PROGRESS_HINT_NUM )
+UI_SetProgressHintStyle( proMobHP, PROGRESS_HINT_PERCENT )
+
+--Create 3D Mob head
+imgMobInfoHead = UI_CreateCompent( frmMobInfo, IMAGE_TYPE, "imgMobInfoHead", 28, 28, 4, 1 )
+d3dTarget = UI_CreateCompent( frmMobInfo, UI3D_COMPENT_TYPE, "d3dTarget", 28, 28, 0, 0 )
+
+--Create Leader Image Icon
+imgTargetLeader = UI_CreateCompent( frmMobInfo, IMAGE_TYPE, "imgTargetLeader", 11, 11, 1, 1 )
+UI_LoadImage( imgTargetLeader, "texture/ui_po/frmPlayerHud.png", NORMAL, 11, 11, 156, 222 )
+UI_SetIsShow( imgTargetLeader, FALSE )
+
+
+
+---------------------- Monster Info Button
+--Create Button for Drop Info
+btnOpenDrop = UI_CreateCompent( frmMobInfo, BUTTON_TYPE, "btnOpenDrop", 77, 21, 102, 30 )
+UI_LoadButtonImage2(btnOpenDrop, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmMobInfo, LABELEX_TYPE, "labtext", 100, 15, 117, 33 )
+UI_SetCaption( labtext, "Mob Info")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Drop Info
+-----------------------------------------------------------------------	
+--Create Mob Drop Info
+frmMobInfoDrop = UI_CreateForm( "frmMobInfoDrop", FALSE, 212, 408, 0, 0, TRUE, FALSE )
+UI_ShowForm( frmMobInfoDrop, FALSE )
+UI_SetIsDrag( frmMobInfoDrop, TRUE )
+UI_AddFormToTemplete( frmMobInfoDrop, FORM_MAIN )
+UI_FormSetIsEscClose( frmMobInfoDrop, TRUE )
+UI_SetFormStyleEx( frmMobInfoDrop, 9 , 180, 59)
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmMobInfoDrop, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 271, 404, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmMobInfoDrop, BUTTON_TYPE, "btnClose", 10, 10, 237, 7 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labTitle", 100, 15, 100, 6 )
+UI_SetCaption( labTitle, "Monster Info")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+------------ Tabs
+--Create page
+pgeMobInfo = UI_CreateCompent( frmMobInfoDrop, PAGE_TYPE, "pgeMobInfo", 172, 25, 0, 0 )
+UI_SetPageButton( pgeMobInfo, PAGE_BUTTON_CUSTOM, 48, 16 )
+
+--Drop Info
+DropInfoid = UI_CreatePageItem( pgeMobInfo )
+ttlDrop = UI_GetPageItemObj( DropInfoid, PAGE_ITEM_TITLE )
+UI_LoadImage( ttlDrop, "texture/ui/blackui1.png", PAGE_ITEM_TITLE_NORMAL, 34, 16, 372, 40 )
+UI_LoadImage( ttlDrop, "texture/ui/blackui1.png", PAGE_ITEM_TITLE_ACTIVE, 34, 16, 335, 40 )
+UI_SetPos( ttlDrop, 8, 32 )
+UI_SetSize( ttlDrop, 96, 16 )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labtext", 100, 15, 32, 32 )
+UI_SetCaption( labtext, "Drop Info")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--Mob Info
+MobInfoid = UI_CreatePageItem( pgeMobInfo )
+ttlMob = UI_GetPageItemObj( MobInfoid, PAGE_ITEM_TITLE )
+UI_LoadImage( ttlMob, "texture/ui/blackui1.png", PAGE_ITEM_TITLE_NORMAL, 38, 16, 370, 40 )
+UI_LoadImage( ttlMob, "texture/ui/blackui1.png", PAGE_ITEM_TITLE_ACTIVE, 36, 16, 334, 40 )
+UI_SetPos( ttlMob, 163, 32 )
+UI_SetSize( ttlMob, 96, 16 )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labtext", 100, 15, 191, 32 )
+UI_SetCaption( labtext, "Mob Info")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+---------------------- Drop Info
+-- List Line BG
+for i=0 , 7, 1 do
+	local imgblockbg = UI_CreateCompent( frmMobInfoDrop, IMAGE_FRAME_NEW_TYPE, "imgblockbg", 259, 40, 6, 59 + i*42  )
+	UI_LoadFrameImage(imgblockbg, "texture/ui/blackui1.png", 398, 116, 13, 13, "", 0, 0)
+    UI_AddCompent( DropInfoid, imgblockbg )
+    
+    --Slot img 1
+    local imgslotimg1 = UI_CreateCompent( frmMobInfoDrop, IMAGE_TYPE, "imgslotimg1", 34, 34, 10, 62 + i*42 )
+    UI_LoadImage( imgslotimg1, "texture/ui/blackui1.png", NORMAL, 34, 34, 440, 81 )
+    UI_AddCompent( DropInfoid, imgslotimg1 )
+end
+
+
+--List Drop Items
+lstItemDrop = UI_CreateCompent(frmMobInfoDrop, ITEM_LIST_TYPE, "lstItemDrop", 183, 320, 10, 62)
+UI_SetListRowHeight( lstItemDrop, 42 )
+UI_FormSetIsEscClose( lstItemDrop, TRUE )
+UI_SetTextColor(lstItemDrop, COLOR_WHITE)
+UI_AddCompent( DropInfoid, lstItemDrop )
+
+
+
+
+---------------------- Mob Info
+
+--Titles Filter
+btnTitle1 = UI_CreateCompent( frmMobInfoDrop, BUTTON_TYPE, "btnTitle1", 255, 21, 8, 56 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+UI_AddCompent( MobInfoid, btnTitle1 )
+
+labTtitle1 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labTtitle1", 100, 15, 100, 59)
+UI_SetCaption( labTtitle1, "Monster Stats")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labTtitle1 )
+
+-- List Line BG
+for i=0 , 3 , 1 do
+	local imglistlinebg = UI_CreateCompent( frmMobInfoDrop, IMAGE_TYPE, "imglistlinebg", 255, 18, 8, 76 + i*38  )
+	UI_LoadImage( imglistlinebg, "texture/ui/blackui1.png", NORMAL, 18, 13, 208, 35 )
+    UI_AddCompent( MobInfoid, imglistlinebg )
+end
+
+
+
+--List Drop Items
+lstMobInfo = UI_CreateCompent( frmMobInfoDrop, ITEM_LIST_TYPE, "lstMobInfo", 183, 320, 300, 57)
+UI_SetListRowHeight( lstMobInfo, 40 )
+UI_FormSetIsEscClose( lstMobInfo, TRUE )
+UI_SetTextColor(lstMobInfo, COLOR_BLACK)
+UI_AddCompent( MobInfoid, lstMobInfo )
+
+
+--Monster Level Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 78)
+UI_SetCaption( labText2, "Level:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobLevel = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobLevel", 100, 20, 155, 78 )
+UI_SetCaption( labMobLevel, "9999" )
+UI_SetTextColor( labMobLevel, COLOR_WHITE )
+UI_SetLabelExFont( labMobLevel, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobLevel, 2)
+UI_AddCompent( MobInfoid, labMobLevel )
+
+
+
+--Monster Exp Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 96)
+UI_SetCaption( labText2, "Exp:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobExp = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobExp", 100, 20, 155, 96 )
+UI_SetCaption( labMobExp, "9999" )
+UI_SetTextColor( labMobExp, COLOR_WHITE )
+UI_SetLabelExFont( labMobExp, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobExp, 2)
+UI_AddCompent( MobInfoid, labMobExp )
+
+
+
+--Monster HP Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 115)
+UI_SetCaption( labText2, "Max Health:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobHP = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobHP", 100, 20, 155, 115 )
+UI_SetCaption( labMobHP, "9999" )
+UI_SetTextColor( labMobHP, COLOR_WHITE )
+UI_SetLabelExFont( labMobHP, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobHP, 2)
+UI_AddCompent( MobInfoid, labMobHP )
+
+
+
+--Monster Atk Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 136)
+UI_SetCaption( labText2, "Max Attack:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobAtk = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobAtk", 100, 20, 155, 136 )
+UI_SetCaption( labMobAtk, "9999" )
+UI_SetTextColor( labMobAtk, COLOR_WHITE )
+UI_SetLabelExFont( labMobAtk, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobAtk, 2)
+UI_AddCompent( MobInfoid, labMobAtk )
+
+
+
+
+--Monster Hit Rate Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 154)
+UI_SetCaption( labText2, "Hit Rate:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobHit = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobHit", 100, 20, 155, 154 )
+UI_SetCaption( labMobHit, "9999" )
+UI_SetTextColor( labMobHit, COLOR_WHITE )
+UI_SetLabelExFont( labMobHit, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobHit, 2)
+UI_AddCompent( MobInfoid, labMobHit )
+
+
+
+
+--Monster Dodge Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 172)
+UI_SetCaption( labText2, "Dodge:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobDodge = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobDodge", 100, 20, 155, 172 )
+UI_SetCaption( labMobDodge, "9999" )
+UI_SetTextColor( labMobDodge, COLOR_WHITE )
+UI_SetLabelExFont( labMobDodge, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobDodge, 2)
+UI_AddCompent( MobInfoid, labMobDodge )
+
+
+
+--Monster Defence Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 191)
+UI_SetCaption( labText2, "Defense:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobDef = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobDef", 100, 20, 155, 191 )
+UI_SetCaption( labMobDef, "9999" )
+UI_SetTextColor( labMobDef, COLOR_WHITE )
+UI_SetLabelExFont( labMobDef, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobDef, 2)
+UI_AddCompent( MobInfoid, labMobDef )
+
+
+
+--Monster Physical Resistence Text
+labText2 = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labText2", 100, 15, 17, 212)
+UI_SetCaption( labText2, "Physical Resistance:")
+UI_SetTextColor( labText2, COLOR_WHITE )
+UI_SetLabelExFont( labText2, FONT12, FALSE, COLOR_WHITE )
+UI_AddCompent( MobInfoid, labText2 )
+
+labMobPR = UI_CreateCompent( frmMobInfoDrop, LABELEX_TYPE, "labMobPR", 100, 20, 155, 212 )
+UI_SetCaption( labMobPR, "9999" )
+UI_SetTextColor( labMobPR, COLOR_WHITE )
+UI_SetLabelExFont( labMobPR, FONT12, FALSE, COLOR_BLACK )
+UI_SetLabelExAlign(labMobPR, 2)
+UI_AddCompent( MobInfoid, labMobPR )
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Revive in town
+-----------------------------------------------------------------------
+frmRelive = UI_CreateForm( "frmRelive",  FALSE, 203, 105, 397, 500, TRUE, FALSE )
+UI_ShowForm( frmRelive, FALSE )
+UI_AddFormToTemplete( frmRelive, FORM_MAIN )
+UI_SetFormStyle( frmRelive, 0 )
+UI_SetIsDrag( frmRelive, TRUE )
+UI_FormSetIsEscClose( frmRelive, FALSE )
+
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmRelive, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 203, 105, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+-- title
+labTitle = UI_CreateCompent( frmRelive, LABELEX_TYPE, "labTitle", 100, 15, 60, 6 )
+UI_SetCaption( labTitle, "Revive")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+
+--Text
+labReCity = UI_CreateCompent( frmRelive, LABELEX_TYPE, "labReCity", 150, 15, 22, 40 )
+UI_SetCaption( labReCity, "Do you want to Revive in town" )
+UI_SetTextColor( labReCity, COLOR_WHITE )
+UI_SetLabelExFont( labReCity, FONT12, FALSE, COLOR_WHITE )
+
+
+--Confirm
+btnReCity = UI_CreateCompent( frmRelive, BUTTON_TYPE, "btnReCity", 69, 28, 67, 68 )
+UI_LoadButtonImage2(btnReCity, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmRelive, LABELEX_TYPE, "labtext", 100, 15, 81, 75 )
+UI_SetCaption( labtext, "Confirm")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+-----------------------------------------------------------------------
+-- ���嵹��ʱ��
+-----------------------------------------------------------------------
+frmTime = UI_CreateForm( "frmTime",  FALSE, 185, 101, 397, 500, TRUE, FALSE )
+UI_LoadFormImage( frmTime, "texture/ui/sure.dds", 185, 101, 0, 0, "", 0, 0 )
+UI_ShowForm( frmTime, FALSE )
+UI_AddFormToTemplete( frmTime, FORM_MAIN )
+UI_SetFormStyle( frmTime, 0 )
+UI_SetIsDrag( frmTime, TRUE )
+--UI_SetAlpha( frmTime, 200 )
+--UI_FormSetHotKey( frmTime, ALT_KEY, HOTKEY_X ) 
+
+--����ѯ����ʾ
+labTime = UI_CreateCompent( frmTime, LABELEX_TYPE, "labTime", 1, 1, 58, 40 )
+--UI_SetCaption( labTime, "Do you want to Revive in town" )
+UI_SetTextColor( labTime, COLOR_BLACK)
+UI_SetLabelExFont( labTime, FONT12, TRUE, COLOR_WHITE )
+
+-- ���ؽ���title
+imgTime = UI_CreateCompent( frmTime, IMAGE_TYPE, "imgTime", 36, 13, 8, 4 )
+UI_LoadImage( imgTime, "texture/ui/Word.dds", NORMAL, 36, 13, 211, 161 )
+
+--����ȡ����ť
+btnNo = UI_CreateCompent( frmTime, BUTTON_TYPE, "btnNo", 41, 19, 74, 78 )
+UI_LoadButtonImage( btnNo, "texture/ui/PublicC.tga", 41, 19, 0, 20, TRUE )
+
+
+
+
+-----------------------------------------------------------------------
+-- Stall Selector
+-----------------------------------------------------------------------	
+frmBoothSelector = UI_CreateForm("frmBoothSelector", FALSE, 190, 93, 300, 350, TRUE, FALSE)
+UI_ShowForm(frmBoothSelector, FALSE)
+UI_AddFormToTemplete(frmBoothSelector, FORM_MAIN)
+UI_SetIsDrag(frmBoothSelector, TRUE)
+UI_FormSetIsEscClose(frmBoothSelector, TRUE)
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmBoothSelector, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 203, 105, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+-- title
+labTitle = UI_CreateCompent( frmBoothSelector, LABELEX_TYPE, "labTitle", 100, 15, 65, 6 )
+UI_SetCaption( labTitle, "Set Stall")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+
+--Text
+labReCity = UI_CreateCompent( frmBoothSelector, LABELEX_TYPE, "labReCity", 150, 15, 59, 40 )
+UI_SetCaption( labReCity, "Select Stall Type" )
+UI_SetTextColor( labReCity, COLOR_WHITE )
+UI_SetLabelExFont( labReCity, FONT12, FALSE, COLOR_WHITE )
+
+
+--Sell
+btnSell = UI_CreateCompent( frmBoothSelector, BUTTON_TYPE, "btnSell", 69, 28, 22, 68 )
+UI_LoadButtonImage2(btnSell, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmBoothSelector, LABELEX_TYPE, "labtext", 100, 15, 44, 75 )
+UI_SetCaption( labtext, "Sell")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--Buy
+btnBuy = UI_CreateCompent( frmBoothSelector, BUTTON_TYPE, "btnBuy", 69, 28, 112, 68 )
+UI_LoadButtonImage2(btnBuy, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmBoothSelector, LABELEX_TYPE, "labtext", 100, 15, 134, 75 )
+UI_SetCaption( labtext, "Buy")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Set Stall
+-----------------------------------------------------------------------	
+frmBooth = UI_CreateForm( "frmBooth", FALSE, 409, 326, 100, 100, TRUE, FALSE )
+UI_ShowForm( frmBooth, FALSE )
+UI_AddFormToTemplete( frmBooth, FORM_MAIN )
+UI_SetIsDrag( frmBooth, TRUE )
+UI_FormSetIsEscClose( frmFound, FALSE )
+
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmBooth, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 409, 326, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmBooth, BUTTON_TYPE, "btnClose", 10, 10, 380, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitle = UI_CreateCompent( frmBooth, LABELEX_TYPE, "labTitle", 100, 15, 175, 6 )
+UI_SetCaption( labTitle, "is selling the following items")
+UI_SetTextColor( labTitle, COLOR_WHITE )
+UI_SetLabelExFont( labTitle, FONT12B, FALSE, COLOR_WHITE )
+
+
+--Input Bg
+imginputBG = UI_CreateCompent( frmBooth, IMAGE_FRAME_NEW_TYPE, "imginputBG", 269, 18, 10, 29 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+--̯Stall Name Input
+edtBoothName = UI_CreateCompent( frmBooth, EDIT_TYPE, "edtBoothName", 283, 20, 25, 31 )
+UI_SetEditMaxNum( edtBoothName, 32 )
+UI_SetEditFont(edtBoothName, DEFAULT_FONT)
+UI_SetTextColor( edtBoothName, COLOR_WHITE )
+UI_SetEditCursorColor( edtBoothName, COLOR_WHITE )
+
+UI_SetHeadSayShopFont(DEFAULT_FONT, COLOR_BLACK)
+
+--Stall Owner Name
+lblOwnerName = UI_CreateCompent( frmBooth, LABELEX_TYPE, "lblOwnerName", 148, 15, 15, 6 )
+UI_SetCaption( lblOwnerName, "Player Stall" )
+UI_SetTextColor( lblOwnerName, COLOR_WHITE )
+UI_SetLabelExFont( lblOwnerName, FONT12B, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(lblOwnerName, 2)
+
+
+--Box
+imgBoxbg = UI_CreateCompent( frmBooth, IMAGE_FRAME_NEW_TYPE, "imgBoxbg", 387, 237, 10, 53 )
+UI_LoadFrameImage(imgBoxbg, "texture/ui/blackui1.png", 229, 36, 7, 7, "", 0, 0)
+UI_SetAlpha( imgBoxbg, 128 )
+
+
+tmpStallItems = UI_CreateTemplate( "tmpStallItems", 379, 224, 0, 0, FALSE )
+for i = 0, 7, 1 do
+    --Square Bg
+    local imgSquareBG = UI_CreateCompent( tmpStallItems, IMAGE_FRAME_NEW_TYPE, "imgSquareBG", 185, 48, 16 + math.floor(i / 4) * 193, 60 + math.mod(i, 4) * 56)
+    UI_LoadFrameImage(imgSquareBG, "texture/ui/blackui1.png", 378, 158, 9, 9, "", 0, 0)
+
+    --Slot img 1
+    local imgslotimg1 = UI_CreateCompent( tmpStallItems, IMAGE_TYPE, "imgslotimg1", 34, 34, 24 + math.floor(i / 4) * 193, 68 + math.mod(i, 4) * 56 )
+    UI_LoadImage( imgslotimg1, "texture/ui/blackui1.png", NORMAL, 34, 34, 440, 117 )
+
+    local cmdStallItem = UI_CreateCompent(tmpStallItems, COMMAND_ONE_TYPE, "cmdStallItem_"..i, 32, 32, 25 + math.floor(i / 4) * 193, 69 + math.mod(i, 4) * 56 )
+
+    local labItemName = UI_CreateCompent( tmpStallItems, LABELEX_TYPE, "labItemName_"..i, 100, 15, 63 + math.floor(i / 4) * 193, 65 + math.mod(i, 4) * 56 )
+    UI_SetCaption( labItemName, "Item Name" )
+    UI_SetTextColor( labItemName, COLOR_WHITE )
+    UI_SetLabelExFont( labItemName, FONT12, FALSE, COLOR_WHITE )
+
+    --White Line
+    local imgWLine = UI_CreateCompent( tmpStallItems, IMAGE_FRAME_NEW_TYPE, "imgWLine", 134, 9, 62 + math.floor(i / 4) * 193, 79 + math.mod(i, 4) * 56 )
+    UI_LoadFrameImage(imgWLine, "texture/ui/blackui1.png", 273, 46, 16, 3, "", 0, 0)
+
+    --Input Bg
+    imginputBG = UI_CreateCompent( tmpStallItems, IMAGE_FRAME_NEW_TYPE, "imginputBG", 134, 18, 62 + math.floor(i / 4) * 193, 85 + math.mod(i, 4) * 56 )
+    UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+    --CoinIcon
+    imgsCoinIcon = UI_CreateCompent( tmpStallItems, IMAGE_TYPE, "imgsCoinIcon", 14, 14, 63 + math.floor(i / 4) * 193, 86 + math.mod(i, 4) * 56 )
+    UI_LoadImage( imgsCoinIcon, "texture/ui/blackui1.png", NORMAL, 14, 14, 254, 39 )
+
+    local labItemPrice = UI_CreateCompent( tmpStallItems, LABELEX_TYPE, "labItemPrice_"..i, 100, 15, 88 + math.floor(i / 4) * 193, 86 + math.mod(i, 4) * 56 )
+    UI_SetCaption( labItemPrice, "99,999,999" )
+    UI_SetTextColor( labItemPrice, COLOR_WHITE )
+    UI_SetLabelExFont( labItemPrice, FONT12, FALSE, COLOR_WHITE )
+end
+
+--Scroll Bar
+scrollid = UI_GetTemplateScroll( tmpStallItems, frmMonsterTime)
+UI_LoadImage( scrollid, "texture/ui/blackui1.png", COMPENT_BACK, 2, 80, 86, 169 )
+UI_SetSize( scrollid, 2, 80 )
+
+--Button Up
+id = UI_GetScrollObj( scrollid, SCROLL_UP )
+UI_SetSize( id, 14, 10 )
+
+--Bar
+id = UI_GetScrollObj( scrollid, SCROLL_SCROLL )
+UI_LoadImage( id, "texture/ui/blackui1.png", COMPENT_BACK, 2, 80, 83, 169 )
+UI_SetSize( id, 2, 80 )
+
+--Button Down
+id = UI_GetScrollObj( scrollid, SCROLL_DOWN )
+UI_SetSize( id, 14, 10 )
+
+
+
+--[[ 
+--Dropdown BG
+imginputBG = UI_CreateCompent( frmBooth, IMAGE_FRAME_NEW_TYPE, "imginputBG", 114, 22, 283, 295 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+imgDrop = UI_CreateCompent( frmBooth, IMAGE_TYPE, "imgDrop", 8, 6, 381, 305 )
+UI_LoadImage( imgDrop, "texture/ui/blackui1.png", NORMAL, 8, 6, 264, 86 )
+
+cboContinent  = UI_CreateCompent( frmBooth, COMBO_TYPE, "cboContinent", 85, 26, 296, 295 )
+UI_ComboSetStyle( cboContinent, TRUE )
+UI_ComboSetTextColor( cboContinent, COLOR_BLACK )
+
+lstContinent = UI_GetList( cboContinent )
+UI_SetListFontColor( lstContinent, COLOR_WHITE, COLOR_WHITE )
+UI_SetSize( lstContinent, 85, 120 ) -- List bg size
+UI_SetMargin( lstContinent, 10,6,16,0 )
+UI_SetListRowHeight( lstContinent, 18 ) -- space between lines
+UI_LoadImage( lstContinent,  "texture/ui/FrmItem.png", NORMAL, 102, 124, 537, 407 ) --List BG
+UI_AddListText( lstContinent, "Potions" )
+UI_AddListText( lstContinent, "Miscleneous" )
+UI_AddListText( lstContinent, "Swords" )
+UI_AddListText( lstContinent, "Gems" )
+UI_AddListText( lstContinent, "Rings" )
+UI_AddListText( lstContinent, "Armors" )
+UI_AddListText( lstContinent, "Scrolls" )
+
+UI_SetListIsMouseFollow( lstContinent, TRUE)
+UI_ListLoadSelectImage( lstContinent, "texture/ui/blackui1.png", 21, 21, 445, 41 )
+UI_ComboSetTextColor( lstContinent, COLOR_WHITE )
+UI_AddCompent( Displayid, lstContinent ) ]]
+
+
+
+for i=0 , 5, 1 do
+    local imgstallslot = UI_CreateCompent( frmBooth, IMAGE_FRAME_NEW_TYPE, "imgstallslot", 85, 85, 64 + math.mod(i , 3) *88, 77 + math.floor(i/ 3) *88) 
+    UI_LoadFrameImage(imgstallslot, "texture/ui/blackui1.png", 378, 158, 9, 9, "", 0, 0)
+
+    local imgstallslot2 = UI_CreateCompent( frmBooth, IMAGE_TYPE, "imgstallslot2", 36, 36, 87 + math.mod(i , 3) *88, 101 + math.floor(i/ 3) *88) 
+	UI_LoadImage( imgstallslot2, "texture/ui/blackui1.png", NORMAL, 36, 36, 95, 216 )
+end
+
+--Delete This grid
+grdBoothItem = UI_CreateCompent( frmBooth, GOODS_GRID_TYPE, "grdBoothItem", 267, 178, 62, 77 ) 
+UI_SetGridSpace( grdBoothItem, 1, 1 )
+UI_SetGridContent( grdBoothItem, 4, 3 )
+UI_SetGridUnitSize( grdBoothItem, 87, 84 )
+UI_SetMargin( grdBoothItem, 0, 0, 0, 0 )
+UI_SetTextColor( grdBoothItem, COLOR_WHITE )
+--UI_GoodGridLoadUnitImage( grdBoothItem, "texture/ui/baitan2.tga", 87, 84, 172, 173 )
+
+
+
+--Set up Button
+btnSetupBooth = UI_CreateCompent( frmBooth, BUTTON_TYPE, "btnSetupBooth", 75, 28, 167, 295 )
+UI_LoadButtonImage2(btnSetupBooth, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmBooth, LABELEX_TYPE, "labSetupBooth", 100, 15, 175, 299 )
+UI_SetCaption( labtext, "Set UP")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--Packup Button
+btnPullStakes = UI_CreateCompent( frmBooth, BUTTON_TYPE, "btnPullStakes", 75, 28, 167, 295 )
+UI_LoadButtonImage2(btnPullStakes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmBooth, LABELEX_TYPE, "labPullStakes", 100, 15, 175, 299 )
+UI_SetCaption( labtext, "Pack UP")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+-- Offline Stall Button
+btnOffline = UI_CreateCompent( frmBooth, BUTTON_TYPE, "btnOffline", 61, 29, 164, 255 )
+UI_LoadButtonImage2( btnOffline, "texture/ui/blackui1.png", 14, 28, 9,28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmBooth, LABELEX_TYPE, "labtext", 100, 15, 176, 261 )
+UI_SetCaption( labtext, "Offline")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+-----------------------------------------------------------------------
+-- Hair Style
+-----------------------------------------------------------------------	
+frmHead = UI_CreateForm( "frmHead", FALSE, 459, 395, 100, 100, TRUE, FALSE )
+UI_ShowForm( frmHead, FALSE )
+UI_AddFormToTemplete( frmHead, FORM_MAIN )
+--UI_FormSetHotKey( frmHead, ALT_KEY, HOTKEY_ )
+UI_FormSetIsEscClose( frmHead, FALSE )
+
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmHead, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 459, 395, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnClose", 10, 10, 430, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labTitleHair = UI_CreateCompent( frmHead, LABELEX_TYPE, "labTitleHair", 100, 15, 204, 6 )
+UI_SetCaption( labTitleHair, "Hair Style")
+UI_SetTextColor( labTitleHair, COLOR_WHITE )
+UI_SetLabelExFont( labTitleHair, FONT12B, FALSE, COLOR_WHITE )
+
+labTitleFace = UI_CreateCompent( frmHead, LABELEX_TYPE, "labTitleFace", 100, 15, 204, 6 )
+UI_SetCaption( labTitleFace, "Face")
+UI_SetTextColor( labTitleFace, COLOR_WHITE )
+UI_SetLabelExFont( labTitleFace, FONT12B, FALSE, COLOR_WHITE )
+
+
+
+--Box
+imgBoxbg = UI_CreateCompent( frmHead, IMAGE_FRAME_NEW_TYPE, "imgBoxbg", 209, 338, 13, 36 )
+UI_LoadFrameImage(imgBoxbg, "texture/ui/blackui1.png", 229, 36, 7, 7, "", 0, 0)
+UI_SetAlpha( imgBoxbg, 128 )
+
+--3D Character
+ui3dCreateCha = UI_CreateCompent( frmHead, UI3D_COMPENT, "ui3dCreateCha", 160, 300, 35, 35 ) -- 160, 300
+
+btnRight3d = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnRight3d", 31, 38, 21, 331 )
+UI_LoadButtonSingleFrameImage(btnRight3d, "texture/ui/blackui1.png", 31, 28, 678, 245)
+UI_SetOpacityHoverButton(btnRight3d, 255)
+UI_SetAlpha( btnRight3d, 210 )
+
+btnLeft3d = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnLeft3d", 31, 38, 183, 331 )
+UI_LoadButtonSingleFrameImage(btnLeft3d, "texture/ui/blackui1.png", 31, 28, 715, 245)
+UI_SetOpacityHoverButton(btnLeft3d, 255)
+UI_SetAlpha( btnLeft3d, 210 )
+
+
+
+
+labRequiredItems = UI_CreateCompent( frmHead, LABELEX_TYPE, "labRequiredItems", 100, 15, 302, 59 )
+UI_SetCaption( labRequiredItems, "Required Tools")
+UI_SetTextColor( labRequiredItems, COLOR_WHITE )
+UI_SetLabelExFont( labRequiredItems, FONT12, FALSE, COLOR_WHITE )
+
+--Slot img 1
+for i=0 ,2 ,1 do
+local imgSlot = UI_CreateCompent( frmHead, IMAGE_TYPE, "imgSlot"..i, 36, 36, 268 + i*56, 81 )
+UI_LoadImage( imgSlot, "texture/ui/blackui1.png", NORMAL, 36, 36, 95, 216 )
+end
+
+
+cmdHead1 = UI_CreateCompent( frmHead, COMMAND_ONE_TYPE, "cmdHead1", 32, 32, 0, 0 )
+UI_SetIsShow( cmdHead1, FALSE )
+
+cmdHead2 = UI_CreateCompent( frmHead, COMMAND_ONE_TYPE, "cmdHead2", 32, 32, 270, 83 )
+UI_SetHint( cmdHead2, "Hairstyling Book" )
+
+cmdHead3 = UI_CreateCompent( frmHead, COMMAND_ONE_TYPE, "cmdHead3", 32, 32, 326, 83 )
+UI_SetHint( cmdHead3, "Colorants" )
+
+cmdHead4 = UI_CreateCompent( frmHead, COMMAND_ONE_TYPE, "cmdHead4", 32, 32, 382, 83 )
+UI_SetHint( cmdHead4, "Scissor" )
+
+
+
+
+labTicket = UI_CreateCompent( frmHead, LABELEX_TYPE, "labTicket", 65, 12, 260, 138 )
+UI_SetCaption( labTicket, "Hairstyling Voucher required" )
+UI_SetTextColor( labTicket, COLOR_WHITE )
+UI_SetLabelExFont( labTicket, FONT12, FALSE, COLOR_WHITE )
+
+
+
+
+--Hair Color
+labHairColor = UI_CreateCompent( frmHead, LABELEX_TYPE, "labHairColorLabel", 100, 15, 316, 172 )
+UI_SetCaption( labHairColor, "Hair Color")
+UI_SetTextColor( labHairColor, COLOR_WHITE )
+UI_SetLabelExFont( labHairColor, FONT12, FALSE, COLOR_WHITE )
+
+imgHairColorBG = UI_CreateCompent( frmHead, IMAGE_FRAME_NEW_TYPE, "imgHairColorBG", 190, 18, 247, 186 )
+UI_LoadFrameImage(imgHairColorBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+labHairColor = UI_CreateCompent( frmHead, LABELEX_TYPE, "labHairColor", 158, 20, 263, 188 )
+UI_SetCaption( labHairColor, "Blue" )
+UI_SetTextColor( labHairColor, COLOR_WHITE )
+UI_SetLabelExFont( labHairColor, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labHairColor, 1)
+
+btnLeftColor = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnLeftColor", 8, 12, 251, 190 )
+UI_LoadButtonSingleFrameImage(btnLeftColor, "texture/ui/blackui1.png", 8, 12, 179, 159)
+UI_SetOpacityHoverButton(btnLeftColor, 255)
+UI_SetAlpha( btnLeftColor, 220 )
+
+btnRightColor = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnRightColor", 8, 12, 424, 190 )
+UI_LoadButtonSingleFrameImage(btnRightColor, "texture/ui/blackui1.png", 8, 12, 190, 159)
+UI_SetOpacityHoverButton(btnRightColor, 255)
+UI_SetAlpha( btnRightColor, 220 )
+
+
+
+
+
+
+--Hair Style
+labHairLabel = UI_CreateCompent( frmHead, LABELEX_TYPE, "labHairLabel", 100, 15, 315, 217 )
+UI_SetCaption( labHairLabel, "Hair style")
+UI_SetTextColor( labHairLabel, COLOR_WHITE )
+UI_SetLabelExFont( labHairLabel, FONT12, FALSE, COLOR_WHITE )
+
+imgHairBG = UI_CreateCompent( frmHead, IMAGE_FRAME_NEW_TYPE, "imgHairBG", 190, 18, 247, 231 )
+UI_LoadFrameImage(imgHairBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+labHair = UI_CreateCompent( frmHead, LABELEX_TYPE, "labHair", 158, 20, 263, 233 )
+UI_SetCaption( labHair, "1 1 Golden" )
+UI_SetTextColor( labHair, COLOR_WHITE )
+UI_SetLabelExFont( labHair, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labHair, 1)
+
+btnLeftHair = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnLeftHair", 8, 12, 251, 235 )
+UI_LoadButtonSingleFrameImage(btnLeftHair, "texture/ui/blackui1.png", 8, 12, 179, 159)
+UI_SetOpacityHoverButton(btnLeftHair, 255)
+UI_SetAlpha( btnLeftHair, 220 )
+
+btnRightHair = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnRightHair", 8, 12, 424, 235 )
+UI_LoadButtonSingleFrameImage(btnRightHair, "texture/ui/blackui1.png", 8, 12, 190, 159)
+UI_SetOpacityHoverButton(btnRightHair, 255)
+UI_SetAlpha( btnRightHair, 220 )
+
+--Face
+labFaceLabel = UI_CreateCompent(frmHead, LABELEX_TYPE, "labFaceLabel", 100, 15, 315, 262)
+UI_SetCaption(labFaceLabel, "Face")
+UI_SetTextColor(labFaceLabel, COLOR_WHITE)
+UI_SetLabelExFont(labFaceLabel, FONT12, FALSE, COLOR_WHITE)
+
+imgFaceBG = UI_CreateCompent(frmHead, IMAGE_FRAME_NEW_TYPE, "imgFaceBG", 190, 18, 247, 276)
+UI_LoadFrameImage(imgFaceBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+labFace = UI_CreateCompent(frmHead, LABELEX_TYPE, "labFace", 158, 20, 263, 278)
+UI_SetCaption(labFace, "Selected Face")
+UI_SetTextColor(labFace, COLOR_WHITE)
+UI_SetLabelExFont(labFace, FONT12, FALSE, COLOR_WHITE)
+UI_SetLabelExAlign(labFace, 1)
+
+btnLeftFace = UI_CreateCompent(frmHead, BUTTON_TYPE, "btnLeftFace", 8, 12, 251, 280)
+UI_LoadButtonSingleFrameImage(btnLeftFace, "texture/ui/blackui1.png", 8, 12, 179, 159)
+UI_SetOpacityHoverButton(btnLeftFace, 255)
+UI_SetAlpha(btnLeftFace, 220)
+
+btnRightFace = UI_CreateCompent(frmHead, BUTTON_TYPE, "btnRightFace", 8, 12, 424, 280)
+UI_LoadButtonSingleFrameImage(btnRightFace, "texture/ui/blackui1.png", 8, 12, 190, 159)
+UI_SetOpacityHoverButton(btnRightFace, 255)
+UI_SetAlpha(btnRightFace, 220)
+
+--Gold Fee
+labtext = UI_CreateCompent( frmHead, LABELEX_TYPE, "labtext", 100, 15, 332, 307 )
+UI_SetCaption( labtext, "Fee")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+imginputBG = UI_CreateCompent( frmHead, IMAGE_FRAME_NEW_TYPE, "imginputBG", 190, 18, 247, 321 )
+UI_LoadFrameImage(imginputBG, "texture/ui/blackui1.png", 179, 118, 14, 6, "", 0, 0)
+
+labHairMoney = UI_CreateCompent( frmHead, LABELEX_TYPE, "labHairMoney", 158, 20, 263, 323 )
+UI_SetCaption( labHairMoney, "99999999" )
+UI_SetTextColor( labHairMoney, COLOR_WHITE )
+UI_SetLabelExFont( labHairMoney, FONT12, FALSE, COLOR_WHITE )
+UI_SetLabelExAlign(labHairMoney, 1)
+
+
+btnYes = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnYes", 69, 28, 308, 346 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+UI_SetButtonModalResult( btnYes, BUTTON_YES )
+
+-- Buttom text
+labtext = UI_CreateCompent( frmHead, LABELEX_TYPE, "labtext", 100, 15, 320, 353 )
+UI_SetCaption( labtext, "Confirm")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+btnNo = UI_CreateCompent( frmHead, BUTTON_TYPE, "btnNo", 41, 19, 379, 321 )
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+-- Pvp Bar Team PK
+-----------------------------------------------------------------------	
+frmTeamPK = UI_CreateForm( "frmTeamPK", FALSE, 511, 422, 0, 0, TRUE, FALSE )
+UI_ShowForm( frmTeamPK, TRUE )
+UI_SetIsDrag( frmTeamPK, TRUE )
+UI_AddFormToTemplete( frmTeamPK, FORM_MAIN )
+UI_SetFormStyle( frmTeamPK, 1 )
+UI_FormSetIsEscClose( frmTeamPK, TRUE )
+
+--Windows bg
+imgBakTop2 = UI_CreateCompent( frmTeamPK, IMAGE_FRAME_NEW_TYPE, "imgBakTop2", 511, 422, 0, 0 )
+UI_LoadFrameImage(imgBakTop2, "texture/ui/blackui1.png", 0, 169, 27, 27, "", 0, 0)
+
+--Button Close
+btnClose = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnClose", 10, 10, 482, 6 )
+UI_LoadButtonSingleFrameImage(btnClose, "texture/ui/blackui1.png", 10, 10, 411, 41)
+UI_SetOpacityHoverButton(btnClose, 255)
+UI_SetAlpha( btnClose, 220 )
+UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
+
+-- title
+labPKtitle = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labPKtitle", 100, 15, 244, 6 )
+UI_SetCaption( labPKtitle, "PVP")
+UI_SetTextColor( labPKtitle, COLOR_WHITE )
+UI_SetLabelExFont( labPKtitle, FONT12B, FALSE, COLOR_WHITE )
+
+labPKmap = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labPKmap", 100, 12, 256, 31 )
+
+--Titles Filter
+btnTitle1 = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnTitle1", 173, 21, 17, 32 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+labTtitle1 = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labTtitle1", 100, 15, 89, 35)
+UI_SetCaption( labTtitle1, "Name")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+
+
+btnTitle1 = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnTitle1", 122, 21, 190, 32 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+labTtitle1 = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labTtitle1", 100, 15, 237, 35)
+UI_SetCaption( labTtitle1, "Class")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+
+
+btnTitle1 = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnTitle1", 60, 21, 312, 32 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+labTtitle1 = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labTtitle1", 100, 15, 329, 35)
+UI_SetCaption( labTtitle1, "Level")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+
+
+btnTitle1 = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnTitle1", 61, 21, 372, 32 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+labTtitle1 = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labTtitle1", 100, 15, 393, 35)
+UI_SetCaption( labTtitle1, "Win")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+
+
+btnTitle1 = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnTitle1", 60, 21, 433, 32 )
+UI_LoadButtonImage2(btnTitle1, "texture/ui/blackui1.png", 7, 21, 7, 21, 7, 21, 424, 41, TRUE)
+
+labTtitle1 = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labTtitle1", 100, 15, 444, 35)
+UI_SetCaption( labTtitle1, "Rounds")
+UI_SetTextColor( labTtitle1, COLOR_WHITE )
+UI_SetLabelExFont( labTtitle1, FONT12, FALSE, COLOR_WHITE )
+
+
+for i=0 ,4 ,1 do
+    local imgBlock = UI_CreateCompent( frmTeamPK, IMAGE_FRAME_NEW_TYPE, "imgBlock", 473, 29, 19, 53 + i*30 )
+    UI_LoadFrameImage(imgBlock, "texture/ui/blackui1.png", 428, 161, 9, 9, "", 0, 0)
+end
+
+
+----------team1
+lstTeam0 = UI_CreateListView( frmTeamPK, "lstTeam0", 473, 150, 25, 53, 6, 2 )
+UI_SetListRowHeight( lstTeam0, 23 )
+UI_SetListFontColor( lstTeam0, COLOR_WHITE, COLOR_WHITE )
+UI_SetListIsMouseFollow( lstTeam0, TRUE)
+--UI_SetMargin( lstTeam0, 2,2,2,2 )
+UI_SetIsShow( lstTeam0, TRUE )
+
+id = UI_GetScroll( lstTeam0 )
+UI_SetIsEnabled( id, FALSE )
+UI_ListViewSetTitle( lstTeam0, 0, 42, "Icon", 0, 0, 0, 0 ) --\texture\ui\Class\icons
+UI_ListViewSetTitle( lstTeam0, 1, 164, "Char Name", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam0, 2, 107, "Class", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam0, 3, 61, "Win", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam0, 4, 61, "Loses", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam0, 5, 30, "Rounds", 0, 0, 0, 0 )
+UI_AddListText( lstTeam0, "Eight characters or therefore" )
+UI_AddListText( lstTeam0, "Eight characters or therefore" )
+UI_AddListText( lstTeam0, "Eight characters or therefore" )
+UI_AddListText( lstTeam0, "Eight characters or therefore" )
+UI_AddListText( lstTeam0, "Eight characters or therefore" )
+
+
+
+--White Line
+imgWLine = UI_CreateCompent( frmTeamPK, IMAGE_FRAME_NEW_TYPE, "imgWLine", 226, 9, 17, 212 )
+UI_LoadFrameImage(imgWLine, "texture/ui/blackui1.png", 273, 46, 16, 3, "", 0, 0)
+
+labVS = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labVS", 100, 15, 245, 205)
+UI_SetCaption( labVS, "VS")
+UI_SetTextColor( labVS, COLOR_WHITE )
+UI_SetLabelExFont( labVS, FONT18B, FALSE, COLOR_WHITE )
+
+--White Line
+imgWLine = UI_CreateCompent( frmTeamPK, IMAGE_FRAME_NEW_TYPE, "imgWLine", 220, 9, 273, 212 )
+UI_LoadFrameImage(imgWLine, "texture/ui/blackui1.png", 273, 46, 16, 3, "", 0, 0)
+
+
+
+for i=0 ,4 ,1 do
+    local imgBlock = UI_CreateCompent( frmTeamPK, IMAGE_FRAME_NEW_TYPE, "imgBlock", 473, 29, 19, 230 + i*30 )
+    UI_LoadFrameImage(imgBlock, "texture/ui/blackui1.png", 428, 192, 9, 9, "", 0, 0)
+end
+
+----------team 2
+lstTeam1 = UI_CreateListView( frmTeamPK, "lstTeam1", 473, 150, 25, 234, 6, 2 )
+UI_SetListRowHeight( lstTeam1, 23 )
+UI_SetListFontColor( lstTeam1, COLOR_WHITE, COLOR_WHITE )
+UI_SetListIsMouseFollow( lstTeam1, TRUE)
+--UI_SetMargin( lstTeam1, 2,2,2,2 )
+UI_SetIsShow( lstTeam1, TRUE )
+
+id = UI_GetScroll( lstTeam1 )
+UI_SetIsEnabled( id, FALSE )
+UI_ListViewSetTitle( lstTeam1, 0, 42, "Icon", 0, 0, 0, 0 ) --\texture\ui\Class\icons
+UI_ListViewSetTitle( lstTeam1, 1, 164, "Char Name", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam1, 2, 107, "Class", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam1, 3, 61, "Win", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam1, 4, 61, "Loses", 0, 0, 0, 0 )
+UI_ListViewSetTitle( lstTeam1, 5, 30, "Rounds", 0, 0, 0, 0 )
+UI_AddListText( lstTeam1, "Eight characters or therefore" )
+UI_AddListText( lstTeam1, "Eight characters or therefore" )
+UI_AddListText( lstTeam1, "Eight characters or therefore" )
+UI_AddListText( lstTeam1, "Eight characters or therefore" )
+UI_AddListText( lstTeam1, "Eight characters or therefore" )
+
+
+--Yes Button
+btnYes = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnYes", 69, 28, 136, 386 )
+UI_LoadButtonImage2(btnYes, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labtext", 100, 15, 159, 393 )
+UI_SetCaption( labtext, "Yes")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
+
+
+--No Button
+btnNo = UI_CreateCompent( frmTeamPK, BUTTON_TYPE, "btnNo", 69, 28, 289, 386 )
+UI_LoadButtonImage2(btnNo, "texture/ui/blackui1.png", 14, 28, 9, 28, 14, 28, 512, 41, TRUE)
+
+-- Buttom text
+labtext = UI_CreateCompent( frmTeamPK, LABELEX_TYPE, "labtext", 100, 15, 316, 393 )
+UI_SetCaption( labtext, "No")
+UI_SetTextColor( labtext, COLOR_WHITE )
+UI_SetLabelExFont( labtext, FONT12, FALSE, COLOR_WHITE )
