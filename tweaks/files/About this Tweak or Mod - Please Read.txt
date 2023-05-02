@@ -1,6 +1,6 @@
 //**************************************************************************************//
-//                                       All-in-One PKO                                 //
-//                                   ~*~  by Luisa RLZ ~*~                              //
+//                                    Clean Drean Tweak                                 //
+//                                   ~*~  by Rami ~*~                                   //
 //**************************************************************************************//
 
 Thank you for downloading this Tweak / Mod! https://luisarlzproductions.com/tweaks/thankyou.html
@@ -17,29 +17,9 @@ Donate via PayPal: https://www.paypal.com/donate/?hosted_button_id=ET39HSVR23CDW
 :   About This Tweak / Mod   :
 ------------------------------
 
-My famous All-in-One package with it's EZ Install Version.
-Download and drag tweaks folder inside main PKO Folder. Replace if needed.
-Then go to your game launcher and click the icons in the right, upper side.
-Select the tweaks you want to use then click 'Activate'. Enjoy!
+This tweak eliminates most buildings in dream isle for an improved visibility.
 
-Tweaks currently contained:
-
-- Classic Camera Tweak
-- Classic Animation Tweak (All mobs)
-- Classic Animation Tweak (No DW mobs)
-- Animation Tweak 2021 (All mobs)
-- Animation Tweak 2021 (No DW mobs)
-- Magic Classes No Melee Tweak
-- HD Floors Tweak
-- Classic Night Argent Tweak
-- HD Night Argent Tweak #1 and #2
-- Seal effect change tweak
-- Yellow TS Tweak
-- Simple Gem Tweak
-- Better Circles in Battle Mode
-- 3 Options for potions and bless effects
-
-Want to know even more about this tweak? Visit https://luisarlzproductions.com/tweaks/all-in-one-pko.html
+Want to know even more about this tweak? Visit https://luisarlzproductions.com/tweaks/clean-dream-po.html
 
 ------------------------------
 :     Sharing This Tweak     :
@@ -49,9 +29,9 @@ As always, you're 100% allowed to download, modify and re-upload these files whe
 however, credits to the original author(s) are always appreciated.
 
 To share with your guild and/or friends, just give them the following link or post it in your discord:
-https://luisarlzproductions.com/tweaks/tweakspko.html
+https://luisarlzproductions.com/tweaks/tweakspo.html
 
-Direct file link: https://luisarlzproductions.com/tweaks/files/PKO-EZ-All-In-One.rar
+Direct file link: https://luisarlzproductions.com/tweaks/files/clean-dream-po.rar
 
 You may also copy and paste text and info from the webpage to your guild's Discord, to save you time.
 
@@ -94,4 +74,4 @@ from launcher. Make sure to Visit the Tweaks Page for the server you play!
 
 Tweaks for Pirates Online: https://luisarlzproductions.com/tweaks/tweakspo.html
 Tweaks for Pirate King Online: https://luisarlzproductions.com/tweaks/tweakspko.html
-Tweaks for Other Servers: https://luisarlzproductions.com/tweaks/alltweaks.html
+Tweaks for Other Servers: https://luisarlzproductions.com/tweaks/tweaks-main.html
