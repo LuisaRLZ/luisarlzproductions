@@ -1,0 +1,9 @@
+var PKO=window.PKO||{};!function($,window,document,_undefined)
+{"use strict";PKO.Clock=XF.Element.newHandler({initialTimestamp:0,initialLocalTime:0,updateTimer:null,getTimestamp:function()
+{return Math.floor(new Date().getTime()/1000);},init:function()
+{this.initialTimestamp=this.$target.data('initial-timestamp');this.initialLocalTime=this.getTimestamp();this.planUpdate();},planUpdate:function()
+{if(this.updateTimer)
+{clearTimeout(this.updateTimer);}
+this.updateTimer=setTimeout($.proxy(this,'update'),1000);},update:function()
+{var currentTimestamp=this.getTimestamp();var serverTimestamp=currentTimestamp+(this.initialTimestamp-this.initialLocalTime);var date=new Date(serverTimestamp*1000);var month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var min=date.getUTCMinutes();var sec=date.getUTCSeconds();var datestring=month[date.getUTCMonth()]+' '+date.getUTCDate()+' &#183; '+date.getUTCHours()+':'+(min<10?('0'+min):min)+'<span class="p-navgroup-linkText">:'+(sec<10?('0'+sec):sec)+'</span>';this.$target.html(datestring);this.planUpdate();},});XF.Element.register('clock','PKO.Clock');}
+(jQuery,window,document);

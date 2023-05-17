@@ -1,0 +1,11 @@
+!function($,window,document)
+{"use strict";XF.DatabaseTooltip=XF.Element.newHandler({options:{delay:100,previewUrl:null,extraClass:''},trigger:null,tooltip:null,init:function()
+{if(!this.options.previewUrl)
+{console.error('No preview URL');return;}
+this.tooltip=new XF.TooltipElement($.proxy(this,'getContent'),{extraClass:'show tooltip--preview'+(this.options.extraClass?' '+this.options.extraClass:''),html:true,loadRequired:true});this.trigger=new XF.TooltipTrigger(this.$target,this.tooltip,{maintain:true,delayInLoading:this.options.delay,delayIn:this.options.delay});this.trigger.init();},getContent:function(onContent)
+{var self=this,options={skipDefault:true,skipError:true,global:false};XF.ajax('get',this.options.previewUrl,{},function(data){self.loaded(data,onContent);},options);},loaded:function(data,onContent)
+{if(!data.html)
+{return;}
+XF.setupHtmlInsert(data.html,function($html,container,onComplete)
+{onContent($html);});}});XF.Element.register('database-tooltip','XF.DatabaseTooltip');}
+(jQuery,window,document);
