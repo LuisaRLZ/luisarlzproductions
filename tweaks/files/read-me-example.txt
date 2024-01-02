@@ -13,7 +13,7 @@
 :   Instructions             :
 ------------------------------
 
-[WRITE THE INSTRUCTIONS OF YOUR TWEAK HERE]
+[WRITE THE INSTRUCTIONS HOW TO USE/INSTALL YOUR TWEAK HERE]
 
 ------------------------------
 :     Notes                  :
